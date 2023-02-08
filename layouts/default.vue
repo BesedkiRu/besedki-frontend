@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-2xl font-bold">Привет это Беседки.ру с башкой</h1>
+    <nuxt/>
   </div>
 </template>
 
@@ -8,6 +8,8 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'IndexPage',
+  name: 'DefaultLayout',
 })
 </script>
+
+<style lang="scss" scoped></style>
