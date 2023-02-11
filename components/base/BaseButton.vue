@@ -5,7 +5,7 @@
     :class="[getModifiers, { active: isActive }]"
     :for="fileInputId"
     @click="$emit('click')"
-  ><slot
+    ><slot
   /></label>
   <button
     v-else
@@ -83,7 +83,7 @@ export default Vue.extend({
   gap: 5px;
   transition: 0.2s;
   &_primary {
-    @apply bg-blue text-white;
+    @apply bg-button-primary text-white;
     &:hover {
       @apply bg-blue-400;
       box-shadow: 0 4px 13px 0 rgba(#1d4784, 0.32);
