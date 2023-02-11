@@ -1,4 +1,4 @@
-# besedki-frontend
+# commeet-frontend
 
 ## Build Setup
 

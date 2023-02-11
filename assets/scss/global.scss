@@ -1,10 +1,12 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import 'fonts';
 
 @layer base {
-  body{
+  body {
     @apply font-rubik;
   }
 }
+
+ 

@@ -5,7 +5,7 @@
     :class="[getModifiers, { active: isActive }]"
     :for="fileInputId"
     @click="$emit('click')"
-  ><slot
+    ><slot
   /></label>
   <button
     v-else
@@ -83,51 +83,51 @@ export default Vue.extend({
   gap: 5px;
   transition: 0.2s;
   &_primary {
-    @apply bg-blue text-white;
+    @apply bg-button-primary text-white;
     &:hover {
-      @apply bg-blue-400;
+      @apply bg-button-primary;
       box-shadow: 0 4px 13px 0 rgba(#1d4784, 0.32);
     }
     &:active {
-      @apply bg-blue-500;
+      @apply bg-button-primary;
     }
     &.active {
-      @apply bg-blue-500;
+      @apply bg-button-primary;
     }
   }
   &_secondary {
-    @apply bg-gray-250 text-blue;
+    @apply bg-button-primary text-white;
     &:hover {
-      @apply bg-button-hoverBlue text-white;
+      @apply bg-button-primary text-white;
     }
     &:active {
-      @apply bg-button-activeBlue text-white;
+      @apply bg-button-primary text-white;
     }
     &.active {
-      @apply bg-button-activeBlue text-white;
+      @apply bg-button-primary text-white;
     }
   }
   &_outline {
-    @apply border border-blue;
+    @apply border border-button-primary;
     &:hover {
-      @apply bg-button-secondary;
+      @apply bg-button-primary;
     }
     &:active {
-      @apply bg-button-activeBlue text-white;
+      @apply bg-button-primary text-white;
     }
     &.active {
-      @apply bg-button-activeBlue text-white;
+      @apply bg-button-primary text-white;
     }
   }
   &_flat {
     &:hover {
-      @apply bg-button-secondary;
+      @apply bg-button-primary;
     }
     &:active {
-      @apply bg-button-activeBlue text-white;
+      @apply bg-button-primary text-white;
     }
     &.active {
-      @apply bg-button-activeBlue text-white;
+      @apply bg-button-primary text-white;
     }
   }
   &_size {

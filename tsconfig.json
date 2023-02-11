@@ -15,7 +15,22 @@
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-    "types": ["@nuxt/types", "@nuxtjs/axios", "@types/node"]
+    "types": [
+      "@nuxt/types",
+      "@nuxtjs/axios",
+      "@types/node",
+      "@nuxtjs/toast",
+      "vue-final-modal",
+      "@nuxtjs/moment",
+      "@nuxtjs/auth-next",
+      "@types/vue-clickaway",
+      "@nuxtjs/i18n",
+      "@types/dom-mediacapture-record",
+      "@nuxtjs/color-mode",
+      "@types/lodash",
+      "@types/marked",
+      "@types/dompurify"
+    ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }
