@@ -8,5 +8,13 @@
     @apply font-rubik;
   }
 }
-
- 
+.container{
+  max-width: 1290px;
+  margin: 0 auto;
+}
+input:focus{
+  outline: none;
+}
+button{
+  outline: none;
+}
