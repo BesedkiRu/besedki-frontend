@@ -1,5 +1,6 @@
+import { resolve } from 'path'
+
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'besedki-frontend',
     meta: [
@@ -12,46 +13,100 @@ export default {
   },
 
   server: {
-    port: 7777,
+    port: 5050, // default: 3000
   },
-  // Global CSS: https://go.nuxtjs.dev/config-css
+
   css: ['~/assets/scss/global.scss'],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  alias: {
+    assets: resolve(__dirname, './assets/'),
+  },
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  plugins: [
+  ],
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+  components: false,
+
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
-    // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/moment',
+    '@nuxtjs/color-mode',
+    '@nuxtjs/svg',
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
+    '@nuxtjs/auth-next',
     '@nuxtjs/pwa',
+    '@nuxtjs/toast',
+    '@nuxtjs/i18n',
+    'cookie-universal-nuxt',
   ],
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+  toast: {
+    position: 'top-right',
+    duration: 4000,
   },
 
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
-  pwa: {
-    manifest: {
-      lang: 'en',
+  moment: {
+    defaultLocale: 'ru',
+    locales: ['ru'],
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        scheme: 'refresh',
+        token: {
+          property: 'access',
+          global: true,
+          type: 'Bearer',
+        },
+        refreshToken: {
+          property: 'refresh',
+          data: 'refresh',
+          tokenRequired: true,
+        },
+        user: {
+          property: false,
+        },
+        endpoints: {
+          login: { url: '/api/v1/token/', method: 'post' },
+          refresh: { url: '/api/v1/token/refresh/', method: 'post' },
+          user: { url: '/api/v1/users/me/', method: 'get' },
+          logout: false,
+        },
+      },
     },
+    redirect: {
+      login: '/',
+      logout: '/',
+      home: '/calendar',
+    },
+    resetOnError: true,
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  colorMode: {
+    classSuffix: '',
+  },
+
+  axios: {
+    proxy: true,
+  },
+
+  proxy: {
+
+  },
+
+  pwa: {
+  },
+
+  build: {
+    transpile: [
+      'vee-validate/dist/rules',
+      'vue-final-modal',
+      'vue-loading-overlay',
+    ],
+  },
 }

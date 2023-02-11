@@ -37,17 +37,20 @@ module.exports = {
         dark: '#414141',
       },
       blue: {
-        link: '#2563EE'
+        link: '#2563EE',
       },
       black: {
         DEFAULT: '#141414',
+      },
+      button: {
+        primary: '#2688EB',
       },
       background: {
         primary: '#FAFAFA',
       },
       border: {
-        gray: '#E4E4E7' ,
-      }
+        gray: '#E4E4E7',
+      },
     },
     extend: {
       width: {
