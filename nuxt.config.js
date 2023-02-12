@@ -16,14 +16,17 @@ export default {
     port: 5050, // default: 3000
   },
 
+  publicRuntimeConfig: {
+    BASE_URL: process.env.BASE_URL || 'http://localhost:5050',
+  },
+
   css: ['~/assets/scss/global.scss'],
 
   alias: {
     assets: resolve(__dirname, './assets/'),
   },
 
-  plugins: [
-  ],
+  plugins: [],
 
   components: false,
 
@@ -95,12 +98,9 @@ export default {
     proxy: true,
   },
 
-  proxy: {
+  proxy: {},
 
-  },
-
-  pwa: {
-  },
+  pwa: {},
 
   build: {
     transpile: [
