@@ -1,11 +1,5 @@
 <template>
   <div
-    :style="{
-      'background-image': `url(${require('~/assets/images/signUp-Bg.jpg')})`,
-      'background-position': 'right',
-      'background-repeat': 'no-repeat',
-      'background-size': 'contain',
-    }"
     class="pt-[152px] pl-[270px] pb-[45px]"
   >
     <div class="flex flex-col max-w-[473px]">
@@ -59,8 +53,8 @@
         <div class="flex flex-col justify-center items-center gap-[30px] mt-2.5 max-w-[420px] w-full">
           <div>Или зарегистрироваться с помощью</div>
           <div class="flex gap-2.5 text-blue-link font-medium">
-            <base-button class="px-[24.5px] py-2.5"><img src="~/assets/images/icons/Google.svg" alt="">Google</base-button>
-            <base-button class="px-[24.5px] py-2.5"><img src="~/assets/images/icons/VK.svg" alt="">ВКонтакте</base-button>
+<!--            <base-button class="px-[24.5px] py-2.5"><img src="~/assets/images/icons/Google.svg" alt="">Google</base-button>-->
+<!--            <base-button class="px-[24.5px] py-2.5"><img src="~/assets/images/icons/VK.svg" alt="">ВКонтакте</base-button>-->
           </div>
         </div>
       </div>
