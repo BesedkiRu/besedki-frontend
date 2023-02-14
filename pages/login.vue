@@ -1,6 +1,6 @@
 <template>
     <div class="flex w-full">
-        <div class="w-1/2 flex justify-center pt-[152px]">
+        <div class="w-1/2 flex pl-[270px] pt-[100px]">
             <div class="flex flex-col gap-10">
               <div>
                 <div class="font-medium text-4xl leading-none">
@@ -11,7 +11,7 @@
                   <nuxt-link class="text-blue-link" to="/signup">Зарегистрироваться</nuxt-link>
                 </div>
               </div>
-              <div>
+              <div class="flex flex-col gap-[30px]">
                 <div>
                   <div class="text-sm leading-none text-gray-dark">Email</div>
                   <input
