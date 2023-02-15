@@ -68,7 +68,6 @@ export default Vue.extend({
         'base-button_secondary': this.buttonStyle === 'secondary',
         'base-button_outline': this.buttonStyle === 'outline',
         'base-button_flat': this.buttonStyle === 'flat',
-        'w-full': this.fullWidth === true,
       }
     },
   },
@@ -80,8 +79,10 @@ export default Vue.extend({
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  border-radius: 8px;
   transition: 0.2s;
+  font-weight: 500;
+  gap: 6px;
   &_primary {
     @apply bg-button-primary text-white;
     &:hover {
@@ -132,85 +133,19 @@ export default Vue.extend({
   }
   &_size {
     &_large {
-      height: 56px;
-      border-radius: 10px;
+      height: 44px;
       font-size: 16px;
-      &.base-button_content {
-        &_text {
-          padding: 0 20px;
-        }
-        &_icon-right {
-          padding: 0 15px 0 20px;
-          height: 54px;
-          display: flex;
-          align-items: center;
-          gap: 5px;
-        }
-        &_icon-left {
-          padding: 0 20px 0 15px;
-          height: 54px;
-          display: flex;
-          align-items: center;
-          gap: 2px;
-        }
-        &_icon {
-          padding: 0 16px;
-        }
-      }
+      padding: 10px 16px;
     }
     &_medium {
-      height: 44px;
-      border-radius: 10px;
+      height: 36px;
       font-size: 14px;
-      &.base-button_content {
-        &_text {
-          padding: 0 15px;
-        }
-        &_icon-right {
-          padding: 0 15px 0 20px;
-          height: 50px;
-          display: flex;
-          align-items: center;
-          gap: 5px;
-        }
-        &_icon-left {
-          padding: 0 20px 0 15px;
-          height: 52px;
-          display: flex;
-          align-items: center;
-          gap: 4px;
-        }
-        &_icon {
-          padding: 0 12px;
-        }
-      }
+      padding: 6px 12px;
     }
     &_small {
-      height: 32px;
+      height: 30px;
       font-size: 14px;
-      border-radius: 5px;
-      &.base-button_content {
-        &_text {
-          padding: 0 10px;
-        }
-        &_icon-right {
-          padding: 0 7px 0 10px;
-          height: 40px;
-          display: flex;
-          align-items: center;
-          gap: 2px;
-        }
-        &_icon-left {
-          padding: 0 10px 0 7px;
-          height: 38px;
-          display: flex;
-          align-items: center;
-          gap: 2px;
-        }
-        &_icon {
-          padding: 0 8px;
-        }
-      }
+      padding: 5px 12px;
     }
   }
 }
