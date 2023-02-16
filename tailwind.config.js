@@ -51,6 +51,11 @@ module.exports = {
         'secondary-200': 'rgba(0, 0, 0, 0.08)',
         'secondary-300': 'rgba(0, 0, 0, 0.12)',
       },
+      red: {
+        100: '#E64646',
+        200: '#D83E3C',
+        300: '#C93633',
+      },
       background: {
         primary: '#FAFAFA',
       },
