@@ -11,7 +11,7 @@
                 </div>
                 <div class="text-lg text-gray-dark leading-none mt-[20px]">
                   Уже есть аккаунт?
-                  <nuxt-link class="text-blue-link" to="login">Войти</nuxt-link>
+                  <nuxt-link class="text-blue-link" to="/login">Войти</nuxt-link>
                 </div>
               </div>
               <div class="flex flex-col gap-[30px]">

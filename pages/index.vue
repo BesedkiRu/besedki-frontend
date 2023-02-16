@@ -1,7 +1,10 @@
 <template>
   <div>
     <h1 class="text-2xl font-bold">Привет это Беседки.ру с башкой</h1>
-    <nuxt-link to="signup">На страницу регистрации</nuxt-link>
+    <nuxt-link to="signup">На страницу регистрации</nuxt-link> <br />
+    <nuxt-link to="/organization">Страница создания организации</nuxt-link>
+    <br />
+    <nuxt-link to="/map">Страница создания карты беседок</nuxt-link>
     <base-button v-if="$auth.loggedIn" @click="logout">Выйти</base-button>
     <div>
       {{ $auth.user }}
