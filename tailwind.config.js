@@ -15,6 +15,7 @@ module.exports = {
   theme: {
     fontFamily: {
       rubik: 'Rubik, sans-serif',
+      roboto: 'Roboto, sans-serif',
     },
     container: {
       center: true,
@@ -44,6 +45,16 @@ module.exports = {
       },
       button: {
         primary: '#2688EB',
+        primaryHover: '#2C7CDE',
+        primaryActive: '#1E6FDB',
+        'secondary-100': 'rgba(0, 0, 0, 0.04)',
+        'secondary-200': 'rgba(0, 0, 0, 0.08)',
+        'secondary-300': 'rgba(0, 0, 0, 0.12)',
+      },
+      red: {
+        100: '#E64646',
+        200: '#D83E3C',
+        300: '#C93633',
       },
       background: {
         primary: '#FAFAFA',

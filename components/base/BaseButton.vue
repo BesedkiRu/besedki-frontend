@@ -83,41 +83,42 @@ export default Vue.extend({
   transition: 0.2s;
   font-weight: 500;
   gap: 6px;
+  @apply font-roboto;
+
   &_primary {
     @apply bg-button-primary text-white;
     &:hover {
-      @apply bg-button-primary;
-      box-shadow: 0 4px 13px 0 rgba(#1d4784, 0.32);
+      @apply bg-button-primaryHover;
     }
     &:active {
-      @apply bg-button-primary;
+      @apply bg-button-primaryActive;
     }
     &.active {
-      @apply bg-button-primary;
+      @apply bg-button-primaryActive;
     }
   }
   &_secondary {
-    @apply bg-button-primary text-white;
+    @apply bg-button-secondary-100 text-button-primary;
     &:hover {
-      @apply bg-button-primary text-white;
+      @apply bg-button-secondary-200 text-button-primary;
     }
     &:active {
-      @apply bg-button-primary text-white;
+      @apply bg-button-secondary-300 text-button-primary;
     }
     &.active {
-      @apply bg-button-primary text-white;
+      @apply bg-button-secondary-300 text-button-primary;
     }
   }
   &_outline {
     @apply border border-button-primary;
     &:hover {
-      @apply bg-button-primary;
+      @apply bg-button-secondary-100;
     }
     &:active {
-      @apply bg-button-primary text-white;
+      @apply bg-button-secondary-200 text-button-primary;
     }
     &.active {
-      @apply bg-button-primary text-white;
+      @apply bg-button-secondary-200 text-button-primary;
     }
   }
   &_flat {
@@ -125,10 +126,10 @@ export default Vue.extend({
       @apply bg-button-primary;
     }
     &:active {
-      @apply bg-button-primary text-white;
+      @apply bg-button-secondary-200 text-button-primary;
     }
     &.active {
-      @apply bg-button-primary text-white;
+      @apply bg-button-secondary-200 text-button-primary;
     }
   }
   &_size {

@@ -26,7 +26,10 @@ export default {
     assets: resolve(__dirname, './assets/'),
   },
 
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/vee-validate.js' },
+    { src: '~/plugins/v-mask.js' },
+  ],
 
   components: false,
 
@@ -62,12 +65,12 @@ export default {
       local: {
         scheme: 'refresh',
         token: {
-          property: 'access',
+          property: 'access_token',
           global: true,
           type: 'Bearer',
         },
         refreshToken: {
-          property: 'refresh',
+          property: 'refresh_token',
           data: 'refresh',
           tokenRequired: true,
         },
@@ -75,17 +78,17 @@ export default {
           property: false,
         },
         endpoints: {
-          login: { url: '/api/v1/token/', method: 'post' },
-          refresh: { url: '/api/v1/token/refresh/', method: 'post' },
-          user: { url: '/api/v1/users/me/', method: 'get' },
+          login: { url: '/api/auth/login/', method: 'post' },
+          refresh: { url: '/api/auth/token/refresh/', method: 'post' },
+          user: { url: '/api/user/me/', method: 'get' },
           logout: false,
         },
       },
     },
     redirect: {
-      login: '/',
-      logout: '/',
-      home: '/calendar',
+      login: '/login',
+      logout: '/login',
+      home: '/',
     },
     resetOnError: true,
   },
@@ -96,9 +99,15 @@ export default {
 
   axios: {
     proxy: true,
+    credentials: true,
   },
 
-  proxy: {},
+  proxy: {
+    '/api': {
+      target: process.env.API_URL,
+      changeOrigin: true,
+    },
+  },
 
   pwa: {},
 
