@@ -11,10 +11,12 @@
                 </div>
                 <div class="text-lg text-gray-dark leading-none mt-[20px]">
                   Уже есть аккаунт?
-                  <nuxt-link class="text-blue-link" to="/login">Войти</nuxt-link>
+                  <nuxt-link class="text-blue-link" to="/login"
+                    >Войти</nuxt-link
+                  >
                 </div>
               </div>
-              <div class="flex flex-col gap-[30px]">
+              <div class="flex flex-col gap-4">
                 <validation-provider v-slot="{ errors }" rules="required">
                   <base-input
                     v-model="data.name"
@@ -61,7 +63,7 @@
                 type="submit"
                 size="large"
                 button-style="primary"
-                class="max-w-[420px] w-full mt-2.5"
+                class="max-w-[420px] w-full"
                 >Зарегистрироваться</base-button
               >
               <div

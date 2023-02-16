@@ -10,7 +10,7 @@
                   Создание организации
                 </div>
               </div>
-              <div class="flex flex-col gap-5">
+              <div class="flex flex-col gap-4">
                 <validation-provider v-slot="{ errors }" rules="required">
                   <base-input
                     v-model="data.orgName"
@@ -46,8 +46,8 @@
                     v-model="data.phone"
                     class="max-w-[420px]"
                     label="Номер телефона"
-                    type="number"
                     :error-messages="errors"
+                    mask="+7 ### ### ## ##"
                     name="phone"
                     placeholder="+7 965 784 76 23"
                   />

@@ -16,7 +16,7 @@
                   >
                 </div>
               </div>
-              <div class="flex flex-col gap-[30px]">
+              <div class="flex flex-col gap-4">
                 <validation-provider v-slot="{ errors }" rules="required|email">
                   <base-input
                     v-model="data.email"
@@ -43,7 +43,7 @@
                 type="submit"
                 size="large"
                 button-style="primary"
-                class="max-w-[420px] w-full mt-2.5"
+                class="max-w-[420px] w-full"
                 >Войти</base-button
               >
               <div

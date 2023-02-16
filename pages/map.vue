@@ -1,6 +1,6 @@
 <template>
   <div class="flex w-full">
-    <div class="w-1/2 pl-[270px] pt-[300px]">
+    <div class="w-1/2 flex justify-center items-center">
       <validation-observer ref="form">
         <form novalidate @submit.prevent="onSubmit">
           <fieldset :disabled="formDisabled">
@@ -8,7 +8,7 @@
               <div class="font-medium text-4xl leading-none">
                 Создание карты беседок
               </div>
-              <div class="flex flex-col gap-[30px]">
+              <div class="flex flex-col gap-4">
                 <validation-provider v-slot="{ errors }" rules="required">
                   <base-input
                     v-model="data.name"
@@ -23,7 +23,7 @@
                   <base-input
                     v-model="data.address"
                     class="max-w-[420px]"
-                    label="База отдыха “Чайка”"
+                    label="Адрес"
                     :error-messages="errors"
                     name="address"
                     placeholder="Респ. Татарстан, г. Казань, ул. Пушкина 152"
