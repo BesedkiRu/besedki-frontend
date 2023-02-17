@@ -2,7 +2,7 @@
   <div class="flex w-full">
     <div class="w-1/2 flex pl-[270px] pt-[100px]">
       <validation-observer ref="form">
-        <form novalidate @submit.prevent="onSubmit">
+        <form ref="htmlForm" novalidate @submit.prevent="onSubmit">
           <fieldset :disabled="formDisabled">
             <div class="flex flex-col gap-10">
               <div>
@@ -13,21 +13,21 @@
               <div class="flex flex-col gap-4">
                 <validation-provider v-slot="{ errors }" rules="required">
                   <base-input
-                    v-model="data.orgName"
+                    v-model="data.name"
                     class="max-w-[420px]"
                     label="Наименование организации"
                     :error-messages="errors"
-                    name="orgName"
+                    name="name"
                     placeholder="ООО “Беседки ру”"
                   />
                 </validation-provider>
                 <validation-provider v-slot="{ errors }" rules="required">
                   <base-input
-                    v-model="data.fullName"
+                    v-model="data.directorFullName"
                     class="max-w-[420px]"
                     label="ФИО руководителя"
                     :error-messages="errors"
-                    name="fullName"
+                    name="directorFullName"
                     placeholder="Фролов Александр Вадимович"
                   />
                 </validation-provider>
@@ -85,8 +85,8 @@ export default Vue.extend({
     return {
       formDisabled: false,
       data: {
-        orgName: '',
-        fullName: '',
+        name: '',
+        directorFullName: '',
         email: '',
         phone: '',
       },
@@ -96,12 +96,23 @@ export default Vue.extend({
     form(): ValidateForm {
       return this.$refs.form as ValidateForm
     },
+    htmlForm(): HTMLFormElement {
+      return this.$refs.htmlForm as HTMLFormElement
+    },
   },
   methods: {
     async onSubmit() {
       const isValid = await this.form.validate()
       if (!isValid) {
         this.$toast.error('Проверьте корректность данных')
+        return
+      }
+      try {
+        await this.$axios.post('/api/organization/create', this.data)
+        this.htmlForm.reset()
+        this.$toast.success('Организация успешно создана')
+      } catch (e) {
+        this.$toast.error('Произошла ошибка. Попробуйте позже')
       }
     },
   },

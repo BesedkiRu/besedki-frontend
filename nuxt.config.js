@@ -29,6 +29,7 @@ export default {
   plugins: [
     { src: '~/plugins/vee-validate.js' },
     { src: '~/plugins/v-mask.js' },
+    {src: '~/plugins/yandex-map.js', mode: 'client'} 
   ],
 
   components: false,
@@ -100,6 +101,11 @@ export default {
   axios: {
     proxy: true,
     credentials: true,
+    headers: {
+      common: {
+        'ngrok-skip-browser-warning': 123,
+      },
+    },
   },
 
   proxy: {

@@ -11,7 +11,7 @@
                 </div>
                 <div class="text-lg text-gray-dark leading-none mt-5">
                   Ещё нет аккаунта?
-                  <nuxt-link class="text-blue-link" to="/signup"
+                  <nuxt-link class="text-blue-link hover-underline" to="/signup"
                     >Зарегистрироваться</nuxt-link
                   >
                 </div>
@@ -113,6 +113,7 @@ export default Vue.extend({
       const isValid = await this.form.validate()
       if (!isValid) {
         this.$toast.error('Проверьте корректность данных')
+        return
       }
       try {
         await this.$auth.login({ data: this.data })

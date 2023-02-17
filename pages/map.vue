@@ -2,7 +2,7 @@
   <div class="flex w-full">
     <div class="w-1/2 flex justify-center items-center">
       <validation-observer ref="form">
-        <form novalidate @submit.prevent="onSubmit">
+        <form ref="htmlForm" novalidate @submit.prevent="onSubmit">
           <fieldset :disabled="formDisabled">
             <div class="flex flex-col gap-10">
               <div class="font-medium text-4xl leading-none">
@@ -73,12 +73,22 @@ export default Vue.extend({
     form(): ValidateForm {
       return this.$refs.form as ValidateForm
     },
+    htmlForm(): HTMLFormElement {
+      return this.$refs.htmlForm as HTMLFormElement
+    },
   },
   methods: {
     async onSubmit() {
       const isValid = await this.form.validate()
       if (!isValid) {
         this.$toast.error('Проверьте корректность данных')
+      }
+      try {
+        await this.$axios.post('/api/pavilion_map/create', this.data)
+        this.htmlForm.reset()
+        this.$toast.success('Карта успешно создана')
+      } catch (e) {
+        this.$toast.error('Произошла ошибка. Попробуйте позже')
       }
     },
   },

@@ -11,7 +11,7 @@
                 </div>
                 <div class="text-lg text-gray-dark leading-none mt-[20px]">
                   Уже есть аккаунт?
-                  <nuxt-link class="text-blue-link" to="/login"
+                  <nuxt-link class="text-blue-link hover-underline" to="/login"
                     >Войти</nuxt-link
                   >
                 </div>
