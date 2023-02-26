@@ -21,7 +21,7 @@
           <li><nuxt-link to="/login">Авторизация</nuxt-link></li>
           <li><nuxt-link to="/map">Создание карты беседок</nuxt-link></li>
           <li>
-            <nuxt-link to="/organization">Создания организации</nuxt-link>
+            <nuxt-link to="/organization">Создание организации</nuxt-link>
           </li>
           <li><nuxt-link to="/setting">Настройка беседки</nuxt-link></li>
         </ul>
