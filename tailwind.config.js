@@ -47,9 +47,9 @@ module.exports = {
         primary: '#2688EB',
         primaryHover: '#2C7CDE',
         primaryActive: '#1E6FDB',
-        'secondary-100': 'rgba(0, 0, 0, 0.04)',
-        'secondary-200': 'rgba(0, 0, 0, 0.08)',
-        'secondary-300': 'rgba(0, 0, 0, 0.12)',
+        'secondary-100': '#F5F5F5',
+        'secondary-200': '#EBEBEB',
+        'secondary-300': '#E0E0E0',
       },
       red: {
         100: '#E64646',
@@ -58,6 +58,7 @@ module.exports = {
       },
       background: {
         primary: '#FAFAFA',
+        index: '#F0F8FF',
       },
       border: {
         gray: '#E4E4E7',

@@ -18,3 +18,24 @@ input:focus{
 button{
   outline: none;
 }
+.hover-underline{
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 1px;
+    width: 0;
+    transition: 0.3s;
+    @apply bg-current;
+  }
+  &:hover{
+    &:after {
+      transition: 0.3s;
+      width: 100%;
+    }
+  }
+}
+
