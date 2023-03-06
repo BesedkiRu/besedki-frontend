@@ -9,7 +9,7 @@
       :id="`${name}-input`"
       ref="input"
       v-mask="mask"
-      class="text-gray bg-background-primary mt-[6px] px-[15px] py-[18px] h-[52px] border w-full border-border-gray rounded-[10px]"
+      class="text-gray bg-background-primary mt-[6px] px-[15px] py-[18px] h-[52px] border w-full border-border-gray rounded-[10px] custom-placeholder"
       :placeholder="placeholder"
       :disabled="disabled"
       :value="value"
