@@ -11,7 +11,7 @@
               size="large"
               button-style="primary"
             >
-              <nuxt-link to="#">Личный кабинет</nuxt-link>
+              <nuxt-link to="/cabinet/">Личный кабинет</nuxt-link>
             </base-button>
             <base-button class="w-[170px]" size="large" button-style="primary">
               <span>Сохранить карту</span>

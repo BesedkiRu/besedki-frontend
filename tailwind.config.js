@@ -58,7 +58,9 @@ module.exports = {
       },
       background: {
         primary: '#FAFAFA',
+        secondary: '#DAE2F4',
         index: '#F0F8FF',
+        light: '#F3F2F7'
       },
       border: {
         gray: '#E4E4E7',
