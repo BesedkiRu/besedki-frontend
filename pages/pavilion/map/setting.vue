@@ -29,13 +29,14 @@
       </div>
     </client-only>
 
-    <validation-observer ref="form">
-      <form novalidate @submit.prevent="onSubmit">
-        <fieldset :disabled="formDisabled">
-          <div
-            v-if="active"
-            class="w-[482px] h-full flex-shrink-0 flex flex-col gap-10 rounded-[10px] p-[30px] pr-[18px] setting-shadow overflow-y-scroll"
-          >
+    <validation-observer
+      v-if="active"
+      ref="form"
+      class="w-[482px] h-full flex-shrink-0 rounded-[10px] p-[30px] pr-[18px] setting-shadow overflow-y-scroll"
+    >
+      <form novalidate class="h-full" @submit.prevent="onSubmit">
+        <fieldset class="h-full" :disabled="formDisabled">
+          <div class="flex flex-col h-full gap-10">
             <div class="flex items-center justify-between">
               <div class="font-medium text-2xl leading-none">
                 Настройка беседки
