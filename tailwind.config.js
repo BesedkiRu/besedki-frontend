@@ -70,6 +70,11 @@ module.exports = {
       width: {
         fit: 'fit-content',
       },
+      boxShadow: {
+        none: '0 0 #000',
+        main: '0px 4px 20px rgba(0, 0, 0, 0.15);',
+        mapItem: '0px 10px 20px rgba(0, 0, 0, 0.07)'
+      }
     },
   },
   plugins: [],

@@ -28,6 +28,9 @@
           <li>
             <nuxt-link to="pavilion/map/setting">Настройка беседки</nuxt-link>
           </li>
+          <li>
+            <nuxt-link to="/cabinet">Личный кабинет</nuxt-link>
+          </li>
         </ul>
       </div>
     </div>
@@ -45,11 +48,7 @@ import BaseButton from '~/components/base/BaseButton.vue'
 
 export default Vue.extend({
   name: 'IndexPage',
+  auth: false,
   components: { BaseButton },
-  methods: {
-    logout() {
-      this.$auth.logout()
-    },
-  },
 })
 </script>

@@ -2,7 +2,7 @@
   <div class="flex p-5 gap-5 h-screen">
     <client-only>
       <div
-        class="w-full h-full rounded-[10px] setting-shadow overflow-hidden relative"
+        class="w-full h-full rounded-[10px] shadow-main overflow-hidden relative"
       >
         <div class="absolute z-[1] right-0">
           <div class="flex gap-5 justify-end pr-5 pt-5">
@@ -32,7 +32,7 @@
     <validation-observer
       v-if="active"
       ref="form"
-      class="w-[482px] h-full flex-shrink-0 rounded-[10px] p-[30px] pr-[18px] setting-shadow overflow-y-scroll"
+      class="w-[482px] h-full flex-shrink-0 rounded-[10px] p-[30px] pr-[18px] overflow-y-scroll shadow-main"
     >
       <form novalidate class="h-full" @submit.prevent="onSubmit">
         <fieldset class="h-full" :disabled="formDisabled">
@@ -204,8 +204,5 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .ymap-container {
   height: 100%;
-}
-.setting-shadow {
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
 }
 </style>

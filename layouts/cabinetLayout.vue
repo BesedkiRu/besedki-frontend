@@ -42,14 +42,18 @@
             <div class="text-gray text-sm leading-none">galim691@mail.ru</div>
           </div>
         </div>
-        <sidebar-button>
+        <sidebar-button @click.native="logout">
           <i-exit :size="24" />
           <div>Выйти</div>
         </sidebar-button>
       </div>
     </div>
-    <div class="px-[29px] py-10 bg-background-light w-full">
-      <nuxt />
+    <div class="p-[30px] bg-background-light w-full">
+      <div
+        class="p-[60px] bg-background-primary h-full overflow-y-scroll rounded-[20px]"
+      >
+        <nuxt />
+      </div>
     </div>
   </div>
 </template>
@@ -75,7 +79,16 @@ export default Vue.extend({
     IExit,
     SidebarButton,
   },
+  methods: {
+    logout() {
+      this.$auth.logout()
+    },
+  },
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+a.nuxt-link-exact-active button {
+  @apply bg-background-secondary text-blue-link;
+}
+</style>
