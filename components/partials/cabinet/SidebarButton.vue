@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <button type="button" class="flex gap-4"></button>
 </template>
 
 <script lang="ts">
