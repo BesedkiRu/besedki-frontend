@@ -5,22 +5,29 @@
       :for="`${name}-input`"
       >{{ label }}</label
     >
-    <input
-      :id="`${name}-input`"
-      ref="input"
-      v-mask="mask"
-      class="text-gray bg-background-primary mt-[6px] px-[15px] py-[18px] h-[52px] border w-full border-border-gray rounded-[10px]"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :value="value"
-      :name="`${name}-input`"
-      :readonly="readOnly"
-      :autocomplete="autocomplete"
-      :type="inputType"
-      @input="onInput($event.target.value)"
-      @focus="onFocus"
-      @blur="onBlur"
-    />
+    <div
+      class="text-gray bg-background-primary border border-border-gray rounded-[10px] min-h-[52px] mt-[6px] px-[15px] flex justify-between items-center gap-1.5"
+    >
+      <input
+        :id="`${name}-input`"
+        ref="input"
+        v-mask="mask"
+        class="w-full bg-background-primary"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :value="value"
+        :name="`${name}-input`"
+        :readonly="readOnly"
+        :autocomplete="autocomplete"
+        :type="inputType"
+        @input="onInput($event.target.value)"
+        @focus="onFocus"
+        @blur="onBlur"
+      />
+      <div v-if="measure" class="text-center min-w-[50px]">
+        {{ measure }}
+      </div>
+    </div>
     <div class="text-red-300 text-sm leading-none mt-[3px] h-[14px]">
       <template v-if="errorMessages.length">{{ errorMessages[0] }}</template>
     </div>
@@ -72,6 +79,10 @@ export default Vue.extend({
       default: null,
     },
     autocomplete: {
+      type: String,
+      default: '',
+    },
+    measure: {
       type: String,
       default: '',
     },
