@@ -183,7 +183,6 @@ export default Vue.extend({
     onClick(e: any) {
       this.coords = e.get('coords')
     },
-    closeBar(): any {},
     async onSubmit() {
       const isValid = await this.form.validate()
       if (!isValid) {
