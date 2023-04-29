@@ -29,7 +29,8 @@ export default {
   plugins: [
     { src: '~/plugins/vee-validate.js' },
     { src: '~/plugins/v-mask.js' },
-    {src: '~/plugins/yandex-map.js', mode: 'client'} 
+    {src: '~/plugins/yandex-map.js', mode: 'client'} ,
+    {src: '~/plugins/servicePlugins/utils.ts'}
   ],
 
   components: false,

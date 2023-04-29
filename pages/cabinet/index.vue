@@ -6,33 +6,29 @@
       <div class="flex flex-col gap-10">
         <nuxt-link to="/"><i-logo :size="200" /></nuxt-link>
         <div class="flex flex-col gap-2.5">
-          <nuxt-link
-            to="/cabinet/"
-            class="flex items-center gap-4 pl-4 pr-2 py-[13px]"
-          >
-            <i-profile-logo :size="24" />
-            <div>Профиль</div>
+          <nuxt-link to="/cabinet">
+            <sidebar-button>
+              <i-profile-logo :size="24" />
+              <div>Профиль</div>
+            </sidebar-button>
           </nuxt-link>
-          <nuxt-link
-            to="/Pavilion/Maps"
-            class="flex items-center gap-4 pl-4 pr-2 py-[13px]"
-          >
-            <i-map :size="24" />
-            <div>Карты беседок</div>
+          <nuxt-link to="/cabinet/pavilion-maps">
+            <sidebar-button>
+              <i-map :size="24" />
+              <div>Карты беседок</div>
+            </sidebar-button>
           </nuxt-link>
-          <nuxt-link
-            to="/Booking/History"
-            class="flex items-center gap-4 pl-4 pr-2 py-[13px]"
+          <nuxt-link to="/cabinet/bookings">
+            <sidebar-button>
+              <i-history :size="24" />
+              <div>История броней</div>
+            </sidebar-button></nuxt-link
           >
-            <i-history :size="24" />
-            <div>История броней</div>
-          </nuxt-link>
-          <nuxt-link
-            to="/Cabinet/Settings"
-            class="flex items-center gap-4 pl-4 pr-2 py-[13px]"
-          >
-            <i-settings :size="24" />
-            <div>Настройки</div>
+          <nuxt-link to="/cabinet/settings">
+            <sidebar-button>
+              <i-settings :size="24" />
+              <div>Настройки</div>
+            </sidebar-button>
           </nuxt-link>
         </div>
       </div>
@@ -44,14 +40,10 @@
             <div class="text-gray text-sm leading-none">galim691@mail.ru</div>
           </div>
         </div>
-        <button
-          type="button"
-          class="flex gap-4 items-center pl-4 pr-2 py-[14px]"
-          @click="logout"
-        >
+        <sidebar-button>
           <i-exit :size="24" />
           <div>Выйти</div>
-        </button>
+        </sidebar-button>
       </div>
     </div>
     <div class="px-[29px] py-10 bg-background-light w-full">
@@ -104,6 +96,7 @@ import IExit from '~/components/icons/IExit.vue'
 import IPhone from '~/components/icons/IPhone.vue'
 import IMail from '~/components/icons/IMail.vue'
 import BaseButton from '~/components/base/BaseButton.vue'
+import SidebarButton from '~/components/partials/cabinet/SidebarButton.vue'
 
 export default Vue.extend({
   name: 'Cabinet',
@@ -117,6 +110,7 @@ export default Vue.extend({
     IPhone,
     IMail,
     BaseButton,
+    SidebarButton,
   },
   methods: {
     logout() {

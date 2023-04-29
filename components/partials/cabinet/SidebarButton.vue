@@ -1,6 +1,8 @@
 <template>
-  <button type="button" class="flex gap-4">
-    <slot></slot>
+  <button
+    class="flex items-center w-full gap-4 py-[13px] pl-4 pr-2 active:bg-background-secondary hover:bg-background-light"
+  >
+    <slot />
   </button>
 </template>
 
@@ -10,10 +12,12 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'SidebarButton',
   props: {
-    description: {
-      type: String,
-      required: true,
+    isActive: {
+      type: Boolean,
+      default: false,
     },
   },
 })
 </script>
+
+<style lang="scss" scoped></style>
