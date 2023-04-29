@@ -190,12 +190,6 @@ export default Vue.extend({
         this.$toast.error('Проверьте корректность данных', {
           position: 'top-left',
         })
-        return
-      }
-      try {
-        // const response = await this.$axios.post('/api/auth/signup', this.data)
-      } catch (e) {
-        this.$toast.error('Произошла ошибка. Попробуйте позже')
       }
     },
   },
