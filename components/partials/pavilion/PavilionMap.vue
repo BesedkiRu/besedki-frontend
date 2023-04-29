@@ -6,6 +6,12 @@
 import Vue from 'vue'
 export default Vue.extend({
   name: 'PavilionMap',
+  props: {
+    map: {
+      type: Object,
+      required: true,
+    },
+  },
 })
 </script>
 
