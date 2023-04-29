@@ -1,34 +1,46 @@
 <template>
-  <div class="flex font-roboto font-medium h-screen">
+  <div class="flex h-screen">
     <div
       class="flex flex-col p-5 justify-between text-[15px] leading-none h-full"
     >
       <div class="flex flex-col gap-10">
         <nuxt-link to="/"><i-logo :size="200" /></nuxt-link>
         <div class="flex flex-col gap-2.5">
-          <div class="flex items-center gap-4 pl-4 pr-2 py-[13px]">
+          <nuxt-link
+            to="/cabinet/"
+            class="flex items-center gap-4 pl-4 pr-2 py-[13px]"
+          >
             <i-profile-logo :size="24" />
-            <nuxt-link to="/cabinet/">Профиль</nuxt-link>
-          </div>
-          <div class="flex items-center gap-4 pl-4 pr-2 py-[13px]">
+            <div>Профиль</div>
+          </nuxt-link>
+          <nuxt-link
+            to="/Pavilion/Maps"
+            class="flex items-center gap-4 pl-4 pr-2 py-[13px]"
+          >
             <i-map :size="24" />
-            <nuxt-link to="/cabinet/">Карты беседок</nuxt-link>
-          </div>
-          <div class="flex items-center gap-4 pl-4 pr-2 py-[13px]">
+            <div>Карты беседок</div>
+          </nuxt-link>
+          <nuxt-link
+            to="/Booking/History"
+            class="flex items-center gap-4 pl-4 pr-2 py-[13px]"
+          >
             <i-history :size="24" />
-            <nuxt-link to="/cabinet/">История броней</nuxt-link>
-          </div>
-          <div class="flex items-center gap-4 pl-4 pr-2 py-[13px]">
+            <div>История броней</div>
+          </nuxt-link>
+          <nuxt-link
+            to="/Cabinet/Settings"
+            class="flex items-center gap-4 pl-4 pr-2 py-[13px]"
+          >
             <i-settings :size="24" />
-            <nuxt-link to="/cabinet/">Настройки</nuxt-link>
-          </div>
+            <div>Настройки</div>
+          </nuxt-link>
         </div>
       </div>
       <div class="flex flex-col gap-2.5">
         <div class="flex gap-2.5 items-center py-[13px] pl-4 pr-[27px]">
           <div class="bg-gray w-9 h-9 rounded-full"></div>
           <div>
-            <div class="text-base leading-none">Рустем Галимов</div>
+            <div class="text-base leading-none w-full">Рустем Галимов</div>
             <div class="text-gray text-sm leading-none">galim691@mail.ru</div>
           </div>
         </div>
@@ -114,4 +126,8 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+* {
+  font-family: 'Roboto', sans-serif;
+}
+</style>
