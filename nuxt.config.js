@@ -18,6 +18,7 @@ export default {
 
   publicRuntimeConfig: {
     BASE_URL: process.env.BASE_URL || 'http://localhost:5050',
+    DADATA_TOKEN: process.env.DADATA_TOKEN 
   },
 
   css: ['~/assets/scss/global.scss'],
@@ -29,7 +30,9 @@ export default {
   plugins: [
     { src: '~/plugins/vee-validate.js' },
     { src: '~/plugins/v-mask.js' },
-    {src: '~/plugins/yandex-map.js', mode: 'client'} 
+    {src: '~/plugins/yandex-map.js', mode: 'client'} ,
+    {src: '~/plugins/servicePlugins/utils.ts'},
+    {src: '~/plugins/lodash.js'}
   ],
 
   components: false,
@@ -61,6 +64,10 @@ export default {
     locales: ['ru'],
   },
 
+  router: {
+    middleware: ['auth']
+  },
+
   auth: {
     strategies: {
       local: {
@@ -80,7 +87,7 @@ export default {
         },
         endpoints: {
           login: { url: '/api/auth/login/', method: 'post' },
-          refresh: { url: '/api/auth/token/refresh/', method: 'post' },
+          refresh: { url: '/api/auth/refresh/', method: 'post' },
           user: { url: '/api/user/me/', method: 'get' },
           logout: false,
         },
@@ -88,8 +95,8 @@ export default {
     },
     redirect: {
       login: '/login',
-      logout: '/login',
-      home: '/',
+      logout: '/', 
+      home: '/cabinet',
     },
     resetOnError: true,
   },
@@ -101,13 +108,7 @@ export default {
   axios: {
     proxy: true,
     credentials: true,
-    headers: {
-      common: {
-        'ngrok-skip-browser-warning': 123,
-      },
-    },
   },
-
   proxy: {
     '/api': {
       target: process.env.API_URL,

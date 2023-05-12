@@ -58,7 +58,10 @@ module.exports = {
       },
       background: {
         primary: '#FAFAFA',
+        secondary: '#DAE2F4',
         index: '#F0F8FF',
+        light: '#F3F2F7',
+        suggestionHover: '#EEF6FF'
       },
       border: {
         gray: '#E4E4E7',
@@ -68,6 +71,11 @@ module.exports = {
       width: {
         fit: 'fit-content',
       },
+      boxShadow: {
+        none: '0 0 #000',
+        main: '0px 4px 20px rgba(0, 0, 0, 0.15);',
+        mapItem: '0px 10px 20px rgba(0, 0, 0, 0.07)'
+      }
     },
   },
   plugins: [],

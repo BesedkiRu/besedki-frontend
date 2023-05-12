@@ -6,7 +6,7 @@
       >{{ label }}</label
     >
     <div
-      class="text-gray bg-background-primary border border-border-gray rounded-[10px] min-h-[52px] mt-[6px] px-[15px] flex justify-between items-center gap-1.5"
+      class="relative text-gray bg-background-primary border border-border-gray rounded-[10px] min-h-[52px] mt-[6px] px-[15px] flex justify-between items-center gap-1.5"
     >
       <input
         :id="`${name}-input`"
@@ -28,6 +28,7 @@
         {{ measure }}
       </div>
     </div>
+
     <div class="text-red-300 text-sm leading-none mt-[3px] h-[14px]">
       <template v-if="errorMessages.length">{{ errorMessages[0] }}</template>
     </div>
