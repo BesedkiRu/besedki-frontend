@@ -183,19 +183,12 @@ export default Vue.extend({
     onClick(e: any) {
       this.coords = e.get('coords')
     },
-    closeBar(): any {},
     async onSubmit() {
       const isValid = await this.form.validate()
       if (!isValid) {
         this.$toast.error('Проверьте корректность данных', {
           position: 'top-left',
         })
-        return
-      }
-      try {
-        // const response = await this.$axios.post('/api/auth/signup', this.data)
-      } catch (e) {
-        this.$toast.error('Произошла ошибка. Попробуйте позже')
       }
     },
   },
