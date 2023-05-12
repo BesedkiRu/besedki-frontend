@@ -68,6 +68,7 @@ export default Vue.extend({
         address: '',
       },
       debouncedGetSuggestions: null as any,
+      suggestions: [],
     }
   },
   computed: {
@@ -112,7 +113,7 @@ export default Vue.extend({
             },
           }
         )
-        console.log(response.data)
+        this.suggestions = response.data.suggestions
       } catch (e) {}
     },
   },

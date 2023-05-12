@@ -60,7 +60,8 @@ module.exports = {
         primary: '#FAFAFA',
         secondary: '#DAE2F4',
         index: '#F0F8FF',
-        light: '#F3F2F7'
+        light: '#F3F2F7',
+        suggestionHover: '#EEF6FF'
       },
       border: {
         gray: '#E4E4E7',
