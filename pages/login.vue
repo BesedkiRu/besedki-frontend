@@ -115,10 +115,13 @@ export default Vue.extend({
         this.$toast.error('Проверьте корректность данных')
         return
       }
+      this.formDisabled = true
       try {
         await this.$auth.login({ data: this.data })
       } catch (e) {
         this.$toast.error('Произошла ошибка. Попробуйте позже')
+      } finally {
+        this.formDisabled = false
       }
     },
   },
