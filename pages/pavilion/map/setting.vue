@@ -24,7 +24,12 @@
           :zoom="17"
           @click="onClick"
         >
-          <ymap-marker :coords="coords" marker-id="123" />
+          <ymap-marker
+            :coords="coords"
+            :icon="markerIcon"
+            :balloon-template="baloonTemplate"
+            marker-id="123"
+          />
         </yandex-map>
       </div>
     </client-only>
@@ -163,6 +168,12 @@ export default Vue.extend({
     coords: [55.84158954990046, 48.968362759580394],
     formDisabled: false,
     active: true,
+    markerIcon: {
+      layout: 'default#image',
+      imageSize: [30, 30],
+      imageOffset: [-10, -20],
+      imageHref: 'https://cdn-icons-png.flaticon.com/512/70/70083.png',
+    },
     data: {
       name: '',
       square: '',
@@ -177,6 +188,13 @@ export default Vue.extend({
   computed: {
     form(): ValidateForm {
       return this.$refs.form as ValidateForm
+    },
+    baloonTemplate() {
+      return `<div>
+                <b>{{properties.coords}}</b>
+                <button id="counter-button"> Сохранить беседку </button>
+                <button id="delete-button"> Удалить беседку </button> 
+              </div>`
     },
   },
   methods: {
