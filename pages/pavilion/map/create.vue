@@ -58,7 +58,7 @@ import BaseInput from '~/components/base/BaseInput.vue'
 import { ValidateForm } from '~/config/types'
 
 export default Vue.extend({
-  name: 'CreateMap',
+  name: 'CreateMapPage',
   components: { BaseInput, BaseButton },
   data() {
     return {
@@ -67,6 +67,8 @@ export default Vue.extend({
         name: '',
         address: '',
       },
+      debouncedGetSuggestions: null as any,
+      suggestions: [],
     }
   },
   computed: {
@@ -76,6 +78,14 @@ export default Vue.extend({
     htmlForm(): HTMLFormElement {
       return this.$refs.htmlForm as HTMLFormElement
     },
+  },
+  watch: {
+    'data.address'() {
+      this.debouncedGetSuggestions()
+    },
+  },
+  created() {
+    this.debouncedGetSuggestions = this._.debounce(this.getSuggestions, 300)
   },
   methods: {
     async onSubmit() {
@@ -90,6 +100,21 @@ export default Vue.extend({
       } catch (e) {
         this.$toast.error('Произошла ошибка. Попробуйте позже')
       }
+    },
+    async getSuggestions() {
+      const pureAxios = this.$axios.create()
+      try {
+        const response = await pureAxios.post(
+          'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address',
+          { query: this.data.address },
+          {
+            headers: {
+              Authorization: 'Token ' + this.$config.DADATA_TOKEN,
+            },
+          }
+        )
+        this.suggestions = response.data.suggestions
+      } catch (e) {}
     },
   },
 })

@@ -114,6 +114,7 @@ import BaseInput from '~/components/base/BaseInput.vue'
 export default Vue.extend({
   name: 'SignUpPage',
   components: { BaseInput, BaseButton, IVk, IGoogle },
+  auth: 'guest',
   data() {
     return {
       formDisabled: false,
@@ -143,6 +144,7 @@ export default Vue.extend({
           response.data.access_token,
           response.data.refresh_token
         )
+        this.$toast.success('Успешная регистрация!')
       } catch (e) {
         this.$toast.error('Произошла ошибка. Попробуйте позже')
       }
