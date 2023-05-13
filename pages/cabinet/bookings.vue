@@ -67,7 +67,6 @@ export default Vue.extend({
   components: {},
   layout: 'cabinetLayout',
   data: () => ({}),
-  auth: false,
 })
 </script>
 
