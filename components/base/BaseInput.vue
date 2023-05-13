@@ -34,13 +34,13 @@
         class="absolute py-2.5 px-1 bottom-0 -left-0.5 translate-y-full bg-white w-[calc(100%+3px)] border border-t-0 border-border-gray rounded-[10px]"
       >
         <li
-          v-for="(option, index) in suggestions"
+          v-for="(option, index) in sliceSuggestions"
           :key="index"
           class="text-black leading-none text-sm py-2.5 px-2 rounded-[10px] cursor-pointer duration-200 hover:bg-background-suggestionHover/30"
           :class="{ activeSuggestion: index === activeIndex }"
           @mousedown="chooseSuggestion(index)"
         >
-          {{ option }}
+          {{ option.value }}
         </li>
       </ul>
     </div>
@@ -52,7 +52,7 @@
 </template>
 <script lang="ts">
 import Vue, { PropType } from 'vue'
-import { HtmlInput } from '~/config/types'
+import { DadataSuggestion, HtmlInput } from '~/config/types'
 type InputType = 'text' | 'password' | 'number'
 
 export default Vue.extend({
@@ -104,8 +104,8 @@ export default Vue.extend({
       default: '',
     },
     suggestions: {
-      type: Array as any,
-      default: () => [],
+      type: Array as PropType<DadataSuggestion[]>,
+      default: () => [] as DadataSuggestion[],
     },
   },
   data() {
@@ -123,6 +123,9 @@ export default Vue.extend({
     },
     inputRef(): any {
       return this.$refs.input as HtmlInput
+    },
+    sliceSuggestions(): any[] {
+      return this.suggestions.slice(0, 5)
     },
   },
   watch: {
@@ -154,6 +157,10 @@ export default Vue.extend({
       this.showPassword = !this.showPassword
     },
     handleArrowDown() {
+      if (this.activeIndex === 4) {
+        this.activeIndex = 0
+        return
+      }
       if (this.activeIndex < this.suggestions.length - 1) {
         this.activeIndex++
       }
@@ -165,15 +172,17 @@ export default Vue.extend({
     },
     handleEnter() {
       if (this.activeIndex >= 0) {
-        this.inputValue = this.suggestions[this.activeIndex]
+        this.inputValue = this.suggestions[this.activeIndex].value
         this.activeIndex = -1
       }
+      this.$emit('choose-suggestion', this.suggestions[this.activeIndex])
     },
     chooseSuggestion(index: number) {
       if (this.activeIndex >= 0) {
-        this.inputValue = this.suggestions[index]
+        this.inputValue = this.suggestions[index].value
         this.activeIndex = -1
       }
+      this.$emit('choose-suggestion', this.suggestions[index])
     },
   },
 })

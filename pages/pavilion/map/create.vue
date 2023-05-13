@@ -28,6 +28,7 @@
                     name="address"
                     :suggestions="suggestions"
                     placeholder="Респ. Татарстан, г. Казань, ул. Пушкина 152"
+                    @choose-suggestion="onChooseSuggestion"
                   />
                 </validation-provider>
               </div>
@@ -56,7 +57,7 @@
 import Vue from 'vue'
 import BaseButton from '~/components/base/BaseButton.vue'
 import BaseInput from '~/components/base/BaseInput.vue'
-import { ValidateForm } from '~/config/types'
+import { DadataSuggestion, ValidateForm } from '~/config/types'
 
 export default Vue.extend({
   name: 'CreateMapPage',
@@ -69,11 +70,8 @@ export default Vue.extend({
         address: '',
       },
       debouncedGetSuggestions: null as any,
-      suggestions: [
-        'Ильвир',
-        'Респ Татарстан, Кайбицкий р-н, село Малое Подберезье, ул Большая Красная, д 55',
-        'Данил',
-      ],
+      selectedSuggestion: null as null | DadataSuggestion,
+      suggestions: [] as DadataSuggestion[],
     }
   },
   computed: {
@@ -90,17 +88,27 @@ export default Vue.extend({
     },
   },
   created() {
-    this.debouncedGetSuggestions = this._.debounce(this.getSuggestions, 300)
+    this.debouncedGetSuggestions = this._.debounce(this.getSuggestions, 500)
   },
   methods: {
     async onSubmit() {
       const isValid = await this.form.validate()
+      if (!this.selectedSuggestion) {
+        this.$toast.info('Выберите адрес из автозаполнения')
+        return
+      }
       if (!isValid) {
         this.$toast.error('Проверьте корректность данных')
         return
       }
       try {
-        await this.$axios.post('/api/pavilion_map/create', this.data)
+        await this.$axios.post('/api/pavilion_map/create', {
+          ...this.data,
+          coords: [
+            parseFloat(this.selectedSuggestion.data.geo_lat),
+            parseFloat(this.selectedSuggestion.data.geo_lon),
+          ],
+        })
         this.htmlForm.reset()
         this.$toast.success('Карта успешно создана')
       } catch (e) {
@@ -121,6 +129,9 @@ export default Vue.extend({
         )
         this.suggestions = response.data.suggestions
       } catch (e) {}
+    },
+    onChooseSuggestion(suggestion: DadataSuggestion) {
+      this.selectedSuggestion = suggestion
     },
   },
 })
