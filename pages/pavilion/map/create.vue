@@ -113,6 +113,8 @@ export default Vue.extend({
             },
           }
         )
+        console.log(response.data.suggestions)
+
         this.suggestions = response.data.suggestions
       } catch (e) {}
     },
