@@ -11,22 +11,38 @@
       <input
         :id="`${name}-input`"
         ref="input"
+        v-model="inputValue"
         v-mask="mask"
         class="w-full bg-background-primary"
         :placeholder="placeholder"
         :disabled="disabled"
-        :value="value"
         :name="`${name}-input`"
         :readonly="readOnly"
         :autocomplete="autocomplete"
         :type="inputType"
-        @input="onInput($event.target.value)"
         @focus="onFocus"
         @blur="onBlur"
+        @keydown.down="handleArrowDown"
+        @keydown.up="handleArrowUp"
+        @keydown.enter.self.prevent="handleEnter"
       />
       <div v-if="measure" class="text-center min-w-[50px]">
         {{ measure }}
       </div>
+      <ul
+        v-if="suggestions.length && isFocus && activeIndex >= 0"
+        class="absolute py-2.5 px-1 bottom-0 -left-0.5 translate-y-full bg-white w-[calc(100%+3px)] border border-t-0 border-border-gray rounded-[10px]"
+      >
+        <li
+          v-for="(option, index) in suggestions"
+          :key="index"
+          class="text-black leading-none text-sm py-2.5 px-2 rounded-[10px] cursor-pointer duration-200 hover:bg-background-suggestionHover/30"
+          :class="{ activeSuggestion: index === activeIndex }"
+          @mousedown="chooseSuggestion(index)"
+        >
+          {{ option }}
+        </li>
+      </ul>
     </div>
 
     <div class="text-red-300 text-sm leading-none mt-[3px] h-[14px]">
@@ -87,12 +103,18 @@ export default Vue.extend({
       type: String,
       default: '',
     },
+    suggestions: {
+      type: Array as any,
+      default: () => [],
+    },
   },
   data() {
     return {
+      inputValue: '',
       showPassword: false,
       inputType: this.type as InputType,
       isFocus: false,
+      activeIndex: 0,
     }
   },
   computed: {
@@ -103,16 +125,22 @@ export default Vue.extend({
       return this.$refs.input as HtmlInput
     },
   },
-  methods: {
-    onInput(value: string): void {
-      this.$emit('input', value)
+  watch: {
+    inputValue(newValue) {
+      this.$emit('input', newValue)
     },
+  },
+  created() {
+    this.inputValue = this.value
+  },
+  methods: {
     setFocus() {
       this.inputRef.focus()
       this.isFocus = true
     },
     onFocus() {
       this.isFocus = true
+      this.activeIndex = 0
     },
     onBlur() {
       this.isFocus = false
@@ -125,8 +153,34 @@ export default Vue.extend({
       }
       this.showPassword = !this.showPassword
     },
+    handleArrowDown() {
+      if (this.activeIndex < this.suggestions.length - 1) {
+        this.activeIndex++
+      }
+    },
+    handleArrowUp() {
+      if (this.activeIndex > 0) {
+        this.activeIndex--
+      }
+    },
+    handleEnter() {
+      if (this.activeIndex >= 0) {
+        this.inputValue = this.suggestions[this.activeIndex]
+        this.activeIndex = -1
+      }
+    },
+    chooseSuggestion(index: number) {
+      if (this.activeIndex >= 0) {
+        this.inputValue = this.suggestions[index]
+        this.activeIndex = -1
+      }
+    },
   },
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.activeSuggestion {
+  @apply bg-background-suggestionHover;
+}
+</style>

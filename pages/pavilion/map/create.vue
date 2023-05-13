@@ -26,6 +26,7 @@
                     label="Адрес"
                     :error-messages="errors"
                     name="address"
+                    :suggestions="suggestions"
                     placeholder="Респ. Татарстан, г. Казань, ул. Пушкина 152"
                   />
                 </validation-provider>
@@ -68,7 +69,11 @@ export default Vue.extend({
         address: '',
       },
       debouncedGetSuggestions: null as any,
-      suggestions: [],
+      suggestions: [
+        'Ильвир',
+        'Респ Татарстан, Кайбицкий р-н, село Малое Подберезье, ул Большая Красная, д 55',
+        'Данил',
+      ],
     }
   },
   computed: {
@@ -92,6 +97,7 @@ export default Vue.extend({
       const isValid = await this.form.validate()
       if (!isValid) {
         this.$toast.error('Проверьте корректность данных')
+        return
       }
       try {
         await this.$axios.post('/api/pavilion_map/create', this.data)
