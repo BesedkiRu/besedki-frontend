@@ -10,7 +10,7 @@
       </base-button>
     </div>
     <div class="flex flex-col gap-5 items-center">
-      <div class="flex justify-center gap-[54px] flex-wrap">
+      <div class="flex gap-[54px] flex-wrap">
         <pavilion-map v-for="(map, index) in maps" :key="index" :map="map" />
       </div>
     </div>
