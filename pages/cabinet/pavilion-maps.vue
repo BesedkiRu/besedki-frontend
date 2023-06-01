@@ -36,17 +36,17 @@ export default Vue.extend({
     maps: [
       {
         id: 1,
-        name: 'Сосалка',
+        name: 'Беседка',
         address: 'г. Бавлы, Ленина, 16',
       },
       {
         id: 2,
-        name: 'Ущерб',
+        name: 'Домик',
         address: 'тестовый адрес 116',
       },
       {
         id: 3,
-        name: 'Бывает',
+        name: 'Бомик',
         address: 'тестовый адрес 116',
       },
     ] as PavilionMapEntity[],
