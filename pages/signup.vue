@@ -1,6 +1,10 @@
 <template>
   <div class="flex w-full">
-    <div class="w-1/2 flex pl-[270px] pt-[100px]">
+    <div class="w-1/2 pl-[270px] pt-[100px]">
+      <nuxt-link to="/" class="flex items-center text-lg text-blue-link mb-2"
+        ><i-arrow :size="24"></i-arrow>
+        <div>Вернуться назад</div></nuxt-link
+      >
       <validation-observer ref="form">
         <form novalidate @submit.prevent="onSubmit">
           <fieldset :disabled="formDisabled">
@@ -110,10 +114,11 @@ import IVk from '~/components/icons/IVk.vue'
 import IGoogle from '~/components/icons/IGoogle.vue'
 import { ValidateForm } from '~/config/types'
 import BaseInput from '~/components/base/BaseInput.vue'
+import IArrow from '~/components/icons/IArrow.vue'
 
 export default Vue.extend({
   name: 'SignUpPage',
-  components: { BaseInput, BaseButton, IVk, IGoogle },
+  components: { BaseInput, BaseButton, IVk, IGoogle, IArrow },
   auth: 'guest',
   data() {
     return {

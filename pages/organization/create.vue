@@ -4,6 +4,12 @@
       <validation-observer ref="form">
         <form ref="htmlForm" novalidate @submit.prevent="onSubmit">
           <fieldset :disabled="formDisabled">
+            <nuxt-link
+              to="/"
+              class="flex items-center text-lg text-blue-link mb-2"
+              ><i-arrow :size="24"></i-arrow>
+              <div>Вернуться назад</div></nuxt-link
+            >
             <div class="flex flex-col gap-10">
               <div>
                 <div class="font-medium text-4xl leading-none">
@@ -78,9 +84,10 @@ import Vue from 'vue'
 import BaseButton from '~/components/base/BaseButton.vue'
 import BaseInput from '~/components/base/BaseInput.vue'
 import { ValidateForm } from '~/config/types'
+import IArrow from '~/components/icons/IArrow.vue'
 export default Vue.extend({
   name: 'OrganizationPage',
-  components: { BaseButton, BaseInput },
+  components: { BaseButton, BaseInput, IArrow },
   data() {
     return {
       formDisabled: false,
