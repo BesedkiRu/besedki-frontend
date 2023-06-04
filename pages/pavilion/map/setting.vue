@@ -1,36 +1,9 @@
 <template>
   <div class="flex p-5 gap-5 h-screen">
-    <client-only>
-      <div
-        class="w-full h-full rounded-[10px] shadow-main overflow-hidden relative"
-      >
-        <div class="absolute z-[1] right-0">
-          <div class="flex gap-5 justify-end pr-5 pt-5">
-            <base-button
-              class="max-w-[167px] w-full"
-              size="large"
-              button-style="primary"
-            >
-              <nuxt-link to="/cabinet/">Личный кабинет</nuxt-link>
-            </base-button>
-            <base-button class="w-[170px]" size="large" button-style="primary">
-              <span>Сохранить карту</span>
-            </base-button>
-          </div>
-        </div>
-        <yandex-map
-          :controls="['zoomControl']"
-          :coords="coords"
-          :zoom="17"
-          @click="onClick"
-        >
-          <ymap-marker :coords="coords" marker-id="123" />
-        </yandex-map>
-      </div>
-    </client-only>
+    <pavilions-yandex-map @add-pavilion="onAddPavilion" />
 
     <validation-observer
-      v-if="active"
+      v-if="showSettings"
       ref="form"
       class="w-[482px] h-full flex-shrink-0 rounded-[10px] p-[30px] pr-[18px] overflow-y-scroll shadow-main"
     >
@@ -41,7 +14,7 @@
               <div class="font-medium text-2xl leading-none">
                 Настройка беседки
               </div>
-              <button type="button" @click="active = false">
+              <button type="button" @click="closeSettings">
                 <i-close :size="40" />
               </button>
             </div>
@@ -152,20 +125,23 @@ import BaseButton from '~/components/base/BaseButton.vue'
 import { ValidateForm } from '~/config/types'
 import { PavilionType } from '~/config/enums'
 import PavilionTypeSwitch from '~/components/partials/pavilionSettings/PavilionTypeSwitch.vue'
+import PavilionsYandexMap from '~/components/partials/pavilion/YandexMap.vue'
+
 export default Vue.extend({
   components: {
+    PavilionsYandexMap,
     IClose,
     BaseInput,
     BaseButton,
     PavilionTypeSwitch,
   },
   data: () => ({
-    coords: [55.84158954990046, 48.968362759580394],
     formDisabled: false,
-    active: true,
+    showSettings: false,
     data: {
       name: '',
       square: '',
+      coords: [] as number[],
       capacity: '',
       bedrooms: '',
       type: PavilionType.PAVILION as PavilionType,
@@ -180,9 +156,6 @@ export default Vue.extend({
     },
   },
   methods: {
-    onClick(e: any) {
-      this.coords = e.get('coords')
-    },
     async onSubmit() {
       const isValid = await this.form.validate()
       if (!isValid) {
@@ -191,11 +164,15 @@ export default Vue.extend({
         })
       }
     },
+    onAddPavilion(coords: number[]) {
+      this.showSettings = true
+      this.data.coords = coords
+    },
+    closeSettings() {
+      this.showSettings = false
+      this.$forceUpdate()
+    },
   },
 })
 </script>
-<style lang="scss" scoped>
-.ymap-container {
-  height: 100%;
-}
-</style>
+<style lang="scss" scoped></style>
