@@ -14,13 +14,19 @@
               <div>Профиль</div>
             </sidebar-button>
           </nuxt-link>
-          <nuxt-link to="/cabinet/organization">
+          <nuxt-link
+            v-if="$auth.user.role === 'owner' && $auth.user.organization"
+            to="/cabinet/organization"
+          >
             <sidebar-button>
               <i-organization size="24" />
               <div>Организация</div>
             </sidebar-button>
           </nuxt-link>
-          <nuxt-link to="/cabinet/pavilion-maps">
+          <nuxt-link
+            v-if="$auth.user.role === 'owner'"
+            to="/cabinet/pavilion-maps"
+          >
             <sidebar-button>
               <i-map :size="24" />
               <div>Карты беседок</div>

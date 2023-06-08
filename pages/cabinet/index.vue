@@ -19,12 +19,14 @@
             <div>{{ $auth.user.organization }}</div>
           </div>
         </div>
-        <base-button size="large" button-style="primary" class="max-w-[230px]"
-          >Редактировать профиль</base-button
-        >
+        <nuxt-link to="/cabinet/settings">
+          <base-button size="large" button-style="primary" class="max-w-[230px]"
+            >Редактировать профиль</base-button
+          >
+        </nuxt-link>
       </div>
     </div>
-    <div class="flex flex-col gap-10">
+    <div v-if="$auth.user.role === 'client'" class="flex flex-col gap-10">
       <div class="font-rubik font-medium text-[36px] leading-none">
         История броней
       </div>
@@ -42,6 +44,30 @@
           <nuxt-link to="/">
             <base-button button-style="secondary" size="large"
               >Посмотреть беседки</base-button
+            >
+          </nuxt-link>
+        </div>
+        <i-empty-bills :size="303"></i-empty-bills>
+      </div>
+    </div>
+    <div v-if="$auth.user.role === 'owner'" class="flex flex-col gap-10">
+      <div class="font-rubik font-medium text-[36px] leading-none">
+        Карты беседок
+      </div>
+      <div v-if="maps" class="flex flex-col gap-5 items-center">
+        <div class="flex gap-[54px] flex-wrap">
+          <pavilion-map v-for="(map, index) in maps" :key="index" :map="map" />
+        </div>
+      </div>
+      <div v-else class="flex gap-[124px] items-center justify-center">
+        <div class="flex flex-col gap-9 items-center">
+          <div class="flex flex-col gap-5 items-center font-medium">
+            <div class="text-4xl">У вас пока нет карт беседок</div>
+            <div class="text-[32px] text-gray">Пора это исправить :)</div>
+          </div>
+          <nuxt-link to="/pavilion/map/create">
+            <base-button button-style="secondary" size="large"
+              >Создать карту беседок</base-button
             >
           </nuxt-link>
         </div>

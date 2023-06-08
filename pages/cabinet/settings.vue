@@ -5,7 +5,9 @@
       <div class="flex flex-col gap-10 items-center">
         <div class="flex flex-col gap-5 items-center">
           <div class="w-[150px] h-[150px] bg-gray rounded-full"></div>
-          <div class="font-medium text-4xl text-center">Ильвир Насибуллин</div>
+          <div class="font-medium text-4xl text-center">
+            {{ $auth.user.name }} {{ $auth.user.surname }}
+          </div>
           <div class="text-2xl text-gray">Web-designer</div>
         </div>
         <base-button size="large" class="flex gap-1 items-center">
