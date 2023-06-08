@@ -12,3 +12,13 @@ export type ValidateForm = Vue & {
   errors: string[]
   reset: () => void
 }
+
+interface DadataPayload {
+  geo_lat: string
+  geo_lon: string
+}
+
+export interface DadataSuggestion {
+  value: string
+  data: DadataPayload
+}

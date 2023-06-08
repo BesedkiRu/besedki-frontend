@@ -23,7 +23,7 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'IGoogle',
+  name: 'IClose',
   props: {
     size: {
       type: [Number, String],

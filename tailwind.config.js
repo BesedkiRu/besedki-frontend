@@ -64,7 +64,11 @@ module.exports = {
         suggestionHover: '#EEF6FF'
       },
       border: {
-        gray: '#E4E4E7',
+        gray: {
+          DEFAULT: '#E4E4E7',
+          light: '#E6E6E6',
+        },
+
       },
     },
     extend: {
