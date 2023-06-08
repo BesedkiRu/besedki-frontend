@@ -116,6 +116,7 @@ export default Vue.extend({
       }
       try {
         await this.$axios.post('/api/organization/create', this.data)
+        await this.$auth.fetchUser()
         this.htmlForm.reset()
         this.$toast.success('Организация успешно создана')
       } catch (e) {

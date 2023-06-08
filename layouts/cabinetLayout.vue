@@ -47,9 +47,11 @@
         >
           <div class="bg-gray w-9 h-9 rounded-full flex flex-shrink-0"></div>
           <div>
-            <div class="text-base leading-none w-full">Ильвир Насибуллин</div>
+            <div class="text-base leading-none w-full">
+              {{ $auth.user.name }} {{ $auth.user.surname }}
+            </div>
             <div class="text-gray text-sm leading-none overflow-hidden">
-              ilvir.nasibullin.2017@mail.ru
+              {{ $auth.user.email }}
             </div>
           </div>
         </nuxt-link>

@@ -4,16 +4,19 @@
       <div class="w-[262px] h-[249px] bg-gray rounded-full"></div>
       <div class="flex flex-col gap-[30px]">
         <div class="text-[60px] leading-none font-medium">
-          Насибуллин Ильвир
+          {{ $auth.user.name }} {{ $auth.user.surname }}
         </div>
         <div class="flex flex-col gap-5 text-[24px] leading-none">
           <div class="flex gap-[15px] items-center">
             <i-mail :size="30" />
-            <div>besedka.kzn@lebyazie.ru</div>
+            <div>{{ $auth.user.email }}</div>
           </div>
-          <div class="flex gap-[15px] items-center">
+          <div
+            v-if="$auth.user.organization"
+            class="flex gap-[15px] items-center"
+          >
             <i-organization :size="30" />
-            <div>ООО Лебяжье</div>
+            <div>{{ $auth.user.organization }}</div>
           </div>
         </div>
         <base-button size="large" button-style="primary" class="max-w-[230px]"
