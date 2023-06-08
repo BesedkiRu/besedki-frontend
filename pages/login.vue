@@ -1,6 +1,8 @@
 <template>
-  <div class="flex w-full">
-    <div class="w-1/2 pl-[270px] pt-[100px]">
+  <div class="flex xl:items-center xl:justify-center gap-2 w-full">
+    <div
+      class="w-1/2 pl-[270px] pt-[100px] 2xl:pl-[200px] 2xl:pt-[60px] xl:w-auto xl:p-0"
+    >
       <nuxt-link to="/" class="flex items-center text-lg text-blue-link mb-2"
         ><i-arrow :size="24"></i-arrow>
         <div>Вернуться назад</div></nuxt-link
@@ -82,7 +84,7 @@
       :style="{
         backgroundImage: `url(${require('~/assets/images/login-bg.svg')})`,
       }"
-      class="w-1/2 h-screen bg-no-repeat bg-cover bg-center"
+      class="w-1/2 xl:hidden h-screen bg-no-repeat bg-cover bg-center"
     ></div>
   </div>
 </template>
@@ -123,7 +125,8 @@ export default Vue.extend({
       this.formDisabled = true
       try {
         await this.$auth.login({ data: this.data })
-      } catch (e) {
+      } catch (e: any) {
+        console.log(e.response.data.message)
         this.$toast.error('Произошла ошибка. Попробуйте позже')
       } finally {
         this.formDisabled = false

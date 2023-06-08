@@ -11,16 +11,18 @@
             <i-mail :size="30" />
             <div>{{ $auth.user.email }}</div>
           </div>
-          <div
-            v-if="$auth.user.organization"
-            class="flex gap-[15px] items-center"
-          >
-            <i-organization :size="30" />
-            <div>{{ $auth.user.organization }}</div>
-          </div>
+          <nuxt-link to="/cabinet/organization">
+            <div
+              v-if="$auth.user.organization"
+              class="flex gap-[15px] items-center"
+            >
+              <i-organization :size="30" />
+              <div>{{ $auth.user.organization.name }}</div>
+            </div>
+          </nuxt-link>
         </div>
         <nuxt-link to="/cabinet/settings">
-          <base-button size="large" button-style="primary" class="max-w-[230px]"
+          <base-button size="large" button-style="primary"
             >Редактировать профиль</base-button
           >
         </nuxt-link>

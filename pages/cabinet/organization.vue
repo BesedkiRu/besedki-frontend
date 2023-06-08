@@ -3,20 +3,24 @@
     <div class="flex gap-[75px]">
       <div class="w-[262px] h-[249px] bg-gray rounded-full"></div>
       <div class="flex flex-col gap-[30px]">
-        <div class="text-[60px] leading-none font-medium">ООО Лебяжье</div>
+        <div class="text-[60px] leading-none font-medium">
+          {{ $auth.user.organization.name }}
+        </div>
         <div class="flex flex-col gap-5 text-[24px] leading-none">
           <div class="flex gap-[15px] items-center">
             <i-phone :size="30" />
-            <div>+7 (876) 676-78-89</div>
+            {{ $auth.user.organization.phone }}
           </div>
           <div class="flex gap-[15px] items-center">
             <i-mail :size="30" />
-            <div>besedka.kzn@lebyazie.ru</div>
+            {{ $auth.user.organization.email }}
           </div>
         </div>
-        <base-button size="large" button-style="primary" class="max-w-[180px]"
-          >Редактировать</base-button
-        >
+        <nuxt-link to="/cabinet/settings">
+          <base-button size="large" button-style="primary"
+            >Редактировать организацию</base-button
+          >
+        </nuxt-link>
       </div>
     </div>
     <div class="flex flex-col gap-10">

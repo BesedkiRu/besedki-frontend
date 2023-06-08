@@ -8,7 +8,6 @@
           <div class="font-medium text-4xl text-center">
             {{ $auth.user.name }} {{ $auth.user.surname }}
           </div>
-          <div class="text-2xl text-gray">Web-designer</div>
         </div>
         <base-button size="large" class="flex gap-1 items-center">
           <i-plus :size="24"></i-plus>
@@ -16,16 +15,16 @@
         </base-button>
       </div>
       <div class="w-[2px] border-2 border-border-gray h-full"></div>
-      <validation-observer ref="form">
-        <form ref="htmlForm" novalidate @submit.prevent="onSubmit">
-          <fieldset :disabled="formDisabled">
-            <div class="flex flex-col gap-[30px] max-w-[645px] w-full">
-              <div
-                class="font-medium text-2xl leading-none border-b border-border-gray pb-5"
-              >
-                Основная информация
-              </div>
 
+      <div class="flex flex-col gap-[30px] max-w-[645px] w-full">
+        <div
+          class="font-medium text-2xl leading-none border-b border-border-gray pb-5"
+        >
+          Основная информация
+        </div>
+        <validation-observer ref="form">
+          <form ref="htmlForm" novalidate @submit.prevent="onSubmit">
+            <fieldset :disabled="formDisabled">
               <div class="flex flex-col gap-2.5">
                 <div class="flex gap-7 w-full">
                   <validation-provider v-slot="{ errors }" rules="required">
@@ -55,7 +54,7 @@
                     rules="required|email"
                   >
                     <base-input
-                      v-moder="data.email"
+                      v-model="data.email"
                       :error-messages="errors"
                       label="Email"
                       placeholder="alexander@mail.ru"
@@ -63,10 +62,20 @@
                     ></base-input>
                   </validation-provider>
                 </div>
-                <base-button size="large" class="max-w-[121px]"
+                <base-button type="submit" size="large" class="max-w-[121px]"
                   >Сохранить</base-button
                 >
               </div>
+            </fieldset>
+          </form>
+        </validation-observer>
+        <validation-observer ref="changePasswordForm">
+          <form
+            ref="passwordHtmlForm"
+            novalidate
+            @submit.prevent="onPasswordSubmit"
+          >
+            <fieldset :disabled="formDisabled">
               <div class="flex flex-col gap-2.5">
                 <div
                   class="font-medium text-2xl leading-none border-b border-border-gray pb-5"
@@ -76,7 +85,7 @@
                 <div class="flex gap-7 w-full">
                   <validation-provider v-slot="{ errors }" rules="required">
                     <base-input
-                      v-moder="data.oldPassword"
+                      v-model="oldPassword"
                       label="Старый пароль"
                       :error-messages="errors"
                       placeholder="********"
@@ -87,7 +96,7 @@
                   </validation-provider>
                   <validation-provider v-slot="{ errors }" rules="required">
                     <base-input
-                      v-model="data.newPassword"
+                      v-model="newPassword"
                       label="Новый пароль"
                       placeholder="********"
                       :error-messages="errors"
@@ -97,14 +106,14 @@
                     ></base-input>
                   </validation-provider>
                 </div>
-                <base-button size="large" class="max-w-[175px]"
+                <base-button type="submit" size="large" class="max-w-[175px]"
                   >Изменить пароль</base-button
                 >
               </div>
-            </div>
-          </fieldset>
-        </form>
-      </validation-observer>
+            </fieldset>
+          </form>
+        </validation-observer>
+      </div>
     </div>
   </div>
 </template>
@@ -126,16 +135,48 @@ export default Vue.extend({
       name: '',
       surname: '',
       email: '',
-      oldPassword: '',
-      newPassword: '',
     },
+    oldPassword: '',
+    newPassword: '',
   }),
   computed: {
     form(): ValidateForm {
       return this.$refs.form as ValidateForm
     },
+    changePasswordForm(): ValidateForm {
+      return this.$refs.changePasswordForm as ValidateForm
+    },
+    passwordHtmlForm(): HTMLFormElement {
+      return this.$refs.passwordHtmlForm as HTMLFormElement
+    },
     htmlForm(): HTMLFormElement {
       return this.$refs.htmlForm as HTMLFormElement
+    },
+  },
+  created() {
+    this.data = JSON.parse(JSON.stringify(this.$auth.user))
+  },
+  methods: {
+    async onSubmit() {
+      const isValid = await this.form.validate()
+      if (!isValid) {
+        this.$toast.error('Проверьте корректность данных')
+        return
+      }
+      this.formDisabled = true
+      try {
+        await this.$axios.patch('/api/user', {
+          name: this.data.name,
+          surname: this.data.surname,
+          email: this.data.email,
+          id: this.$auth.user.id,
+        })
+        this.$toasts.success('Данные успешно обновлены!')
+      } catch (e: any) {
+        this.$toast.error('Произошла ошибка. Попробуйте позже')
+      } finally {
+        this.formDisabled = false
+      }
     },
   },
 })
