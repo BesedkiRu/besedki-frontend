@@ -122,7 +122,7 @@ import Vue from 'vue'
 import IClose from '~/components/icons/IClose.vue'
 import BaseInput from '~/components/base/BaseInput.vue'
 import BaseButton from '~/components/base/BaseButton.vue'
-import { ValidateForm } from '~/config/types'
+import { ValidateForm, DadataSuggestion } from '~/config/types'
 import { PavilionType } from '~/config/enums'
 import PavilionTypeSwitch from '~/components/partials/pavilionSettings/PavilionTypeSwitch.vue'
 import PavilionsYandexMap from '~/components/partials/pavilion/YandexMap.vue'
@@ -148,6 +148,7 @@ export default Vue.extend({
       price: '',
       pavilionMap: 1,
     },
+    selectedSuggestion: null as null | DadataSuggestion,
     PavilionType,
   }),
   computed: {

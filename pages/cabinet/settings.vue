@@ -165,13 +165,17 @@ export default Vue.extend({
       }
       this.formDisabled = true
       try {
-        await this.$axios.patch('/api/user', {
-          name: this.data.name,
-          surname: this.data.surname,
-          email: this.data.email,
-          id: this.$auth.user.id,
-        })
-        this.$toasts.success('Данные успешно обновлены!')
+        if (this.$auth.user) {
+          await this.$axios.patch('/api/user', {
+            name: this.data.name,
+            surname: this.data.surname,
+            email: this.data.email,
+            id: this.$auth.user.id,
+          })
+          this.$auth.fetchUser()
+
+          this.$toast.success('Данные успешно обновлены!')
+        }
       } catch (e: any) {
         this.$toast.error('Произошла ошибка. Попробуйте позже')
       } finally {

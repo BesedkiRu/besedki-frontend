@@ -126,7 +126,6 @@ export default Vue.extend({
       try {
         await this.$auth.login({ data: this.data })
       } catch (e: any) {
-        console.log(e.response.data.message)
         this.$toast.error('Произошла ошибка. Попробуйте позже')
       } finally {
         this.formDisabled = false
