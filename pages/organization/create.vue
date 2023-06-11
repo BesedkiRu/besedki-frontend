@@ -119,6 +119,7 @@ export default Vue.extend({
         await this.$auth.fetchUser()
         this.htmlForm.reset()
         this.$toast.success('Организация успешно создана')
+        await this.$router.push('/cabinet/organization')
       } catch (e) {
         this.$toast.error('Произошла ошибка. Попробуйте позже')
       }

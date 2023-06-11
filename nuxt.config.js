@@ -18,7 +18,8 @@ export default {
 
   publicRuntimeConfig: {
     BASE_URL: process.env.BASE_URL || 'http://localhost:5050',
-    DADATA_TOKEN: process.env.DADATA_TOKEN 
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    DADATA_TOKEN: process.env.DADATA_TOKEN,
   },
 
   css: ['~/assets/scss/global.scss'],
@@ -30,9 +31,9 @@ export default {
   plugins: [
     { src: '~/plugins/vee-validate.js' },
     { src: '~/plugins/v-mask.js' },
-    {src: '~/plugins/yandex-map.js', mode: 'client'} ,
-    {src: '~/plugins/servicePlugins/utils.ts'},
-    {src: '~/plugins/lodash.js'}
+    { src: '~/plugins/yandex-map.js', mode: 'client' },
+    { src: '~/plugins/servicePlugins/utils.ts' },
+    { src: '~/plugins/lodash.js' },
   ],
 
   components: false,
@@ -65,7 +66,7 @@ export default {
   },
 
   router: {
-    middleware: ['auth']
+    middleware: ['auth'],
   },
 
   auth: {
@@ -95,7 +96,7 @@ export default {
     },
     redirect: {
       login: '/login',
-      logout: '/', 
+      logout: '/',
       home: '/cabinet',
     },
     resetOnError: true,
