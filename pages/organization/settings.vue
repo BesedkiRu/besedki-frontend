@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-[98px]">
     <div class="text-5xl font-medium">Настройки</div>
-    <div class="flex gap-[124px] justify-center">
+    <div class="flex gap-[124px] justify-center flex-wrap">
       <div class="flex flex-col gap-10 items-center">
         <div class="flex flex-col gap-5 items-center">
           <div class="w-[150px] h-[150px] bg-gray rounded-full"></div>
@@ -26,12 +26,12 @@
           <form ref="htmlForm" novalidate @submit.prevent="onSubmit">
             <fieldset :disabled="formDisabled">
               <div class="flex flex-col gap-2.5">
-                <div class="flex gap-7 w-full">
+                <div class="flex flex-wrap gap-7 w-full">
                   <validation-provider v-slot="{ errors }" rules="required">
                     <base-input
                       v-model="data.name"
-                      label="Имя"
-                      placeholder="Александр"
+                      label="Название"
+                      placeholder="ООО Чайка"
                       class="w-[309px]"
                       :error-messages="errors"
                       name="name"
@@ -39,16 +39,16 @@
                   </validation-provider>
                   <validation-provider v-slot="{ errors }" rules="required">
                     <base-input
-                      v-model="data.surname"
-                      label="Фамилия"
-                      placeholder="Иванов"
+                      v-model="data.directorFullName"
+                      label="ФИО директора"
+                      placeholder="Фролов Вадим Вадимович"
                       :error-messages="errors"
                       class="w-[309px]"
-                      name="surname"
+                      name="directorFullName"
                     ></base-input
                   ></validation-provider>
                 </div>
-                <div>
+                <div class="flex justify-between gap-7 w-full">
                   <validation-provider
                     v-slot="{ errors }"
                     rules="required|email"
@@ -58,8 +58,20 @@
                       :error-messages="errors"
                       label="Email"
                       placeholder="alexander@mail.ru"
+                      class="w-[309px]"
                       name="email"
                     ></base-input>
+                  </validation-provider>
+                  <validation-provider v-slot="{ errors }" rules="required">
+                    <base-input
+                      v-model="data.phone"
+                      class="w-[309px]"
+                      label="Номер телефона"
+                      :error-messages="errors"
+                      mask="+7 ### ### ## ##"
+                      name="phone"
+                      placeholder="+7 965 784 76 23"
+                    />
                   </validation-provider>
                 </div>
                 <base-button type="submit" size="large" class="max-w-[121px]"
@@ -89,8 +101,9 @@ export default Vue.extend({
     formDisabled: false,
     data: {
       name: '',
-      surname: '',
+      directorFullName: '',
       email: '',
+      phone: '',
     },
   }),
   computed: {
@@ -108,7 +121,7 @@ export default Vue.extend({
     },
   },
   created() {
-    this.data = JSON.parse(JSON.stringify(this.$auth.user))
+    this.data = JSON.parse(JSON.stringify(this.$auth.user.organization))
   },
   methods: {
     async onSubmit() {
@@ -120,11 +133,11 @@ export default Vue.extend({
       this.formDisabled = true
       try {
         if (this.$auth.user) {
-          await this.$axios.patch('/api/user', {
+          await this.$axios.patch('/api/organization', {
             name: this.data.name,
-            surname: this.data.surname,
+            directorFullName: this.data.directorFullName,
             email: this.data.email,
-            id: this.$auth.user.id,
+            phone: this.data.phone,
           })
           this.$auth.fetchUser()
           this.$toast.success('Данные успешно обновлены!')
