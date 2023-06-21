@@ -47,23 +47,7 @@ export default Vue.extend({
   layout: 'cabinetLayout',
   data: () => ({
     billsHistory: false,
-    maps: [
-      {
-        id: 1,
-        name: 'Беседка',
-        address: 'г. Бавлы, Ленина, 16',
-      },
-      {
-        id: 2,
-        name: 'Домик',
-        address: 'тестовый адрес 116',
-      },
-      {
-        id: 3,
-        name: 'Бомик',
-        address: 'тестовый адрес 116',
-      },
-    ] as PavilionMapEntity[],
+    maps: [] as PavilionMapEntity[],
   }),
 })
 </script>

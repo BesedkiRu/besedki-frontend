@@ -118,6 +118,7 @@ export default Vue.extend({
         })
         this.htmlForm.reset()
         this.$toast.success('Карта успешно создана')
+        this.$router.push('/pavilion/map/setting')
       } catch (e) {
         this.$toast.error('Произошла ошибка. Попробуйте позже')
       }

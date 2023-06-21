@@ -162,9 +162,7 @@ export default Vue.extend({
           await this.$axios.delete('/api/organization', {
             data: this.$auth.user.organization,
           })
-          this.$auth.user.role = 'client'
           this.$auth.fetchUser()
-
           this.$toast.success('Организация успешно удалена')
           this.$router.push('/cabinet')
         }
