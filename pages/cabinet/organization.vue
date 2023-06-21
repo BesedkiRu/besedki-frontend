@@ -27,10 +27,24 @@
       <div class="font-rubik font-medium text-[36px] leading-none">
         Карты беседок
       </div>
-      <div class="flex flex-col gap-5 items-center">
+      <div v-if="maps.length" class="flex flex-col gap-5 items-center">
         <div class="flex gap-[54px] flex-wrap">
           <pavilion-map v-for="(map, index) in maps" :key="index" :map="map" />
         </div>
+      </div>
+      <div v-else class="flex gap-[124px] items-center justify-center">
+        <div class="flex flex-col gap-9 items-center">
+          <div class="flex flex-col gap-5 items-center font-medium">
+            <div class="text-4xl">У вас пока нет карт беседок</div>
+            <div class="text-[32px] text-gray">Пора это исправить :)</div>
+          </div>
+          <nuxt-link to="/pavilion/map/create">
+            <base-button button-style="secondary" size="large"
+              >Создать карту беседок</base-button
+            >
+          </nuxt-link>
+        </div>
+        <i-empty-bills :size="303"></i-empty-bills>
       </div>
     </div>
   </div>
@@ -42,6 +56,7 @@ import IPhone from '~/components/icons/IPhone.vue'
 import IMail from '~/components/icons/IMail.vue'
 import BaseButton from '~/components/base/BaseButton.vue'
 import PavilionMap from '~/components/partials/pavilion/PavilionMap.vue'
+import IEmptyBills from '~/components/icons/IEmptyBills.vue'
 import { PavilionMapEntity } from '~/config/swagger'
 
 export default Vue.extend({
@@ -51,6 +66,7 @@ export default Vue.extend({
     IMail,
     BaseButton,
     PavilionMap,
+    IEmptyBills,
   },
   layout: 'cabinetLayout',
   data: () => ({

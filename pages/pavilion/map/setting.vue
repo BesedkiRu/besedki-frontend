@@ -145,6 +145,8 @@ export default Vue.extend({
       capacity: '',
       bedrooms: '',
       type: PavilionType.PAVILION as PavilionType,
+      extraServices: [],
+      images: [],
       price: '',
       pavilionMap: 1,
     },
@@ -156,6 +158,9 @@ export default Vue.extend({
       return this.$refs.form as ValidateForm
     },
   },
+  created() {
+    // this.data.pavilionMap = this.
+  },
   methods: {
     async onSubmit() {
       const isValid = await this.form.validate()
@@ -163,6 +168,14 @@ export default Vue.extend({
         this.$toast.error('Проверьте корректность данных', {
           position: 'top-left',
         })
+      }
+      try {
+        await this.$axios.post('/api/pavilion/create', {
+          data: this.data,
+        })
+        this.$toast.success('Беседка успешно создана!')
+      } catch (e: any) {
+        this.$toast.error('Произошла ошибка. Попробуйте позже')
       }
     },
     onAddPavilion(coords: number[]) {

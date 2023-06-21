@@ -1,10 +1,14 @@
 <template>
   <div class="flex w-full">
     <div class="w-1/2 pl-[270px] pt-[100px]">
-      <nuxt-link to="/" class="flex items-center text-lg text-blue-link mb-2"
-        ><i-arrow :size="24"></i-arrow>
-        <div>Вернуться назад</div></nuxt-link
+      <button
+        type="button"
+        class="flex items-center text-lg text-blue-link mb-2"
+        @click="onBack"
       >
+        <i-arrow :size="24"></i-arrow>
+        <div>Вернуться назад</div>
+      </button>
       <validation-observer ref="form">
         <form novalidate @submit.prevent="onSubmit">
           <fieldset :disabled="formDisabled">
@@ -139,6 +143,9 @@ export default Vue.extend({
     },
   },
   methods: {
+    async onBack() {
+      await this.$router.back()
+    },
     ...mapActions('OAuth', ['generateGoogleLink']),
     async onSubmit() {
       const isValid = await this.form.validate()

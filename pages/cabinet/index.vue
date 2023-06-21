@@ -26,7 +26,12 @@
             >Редактировать профиль</base-button
           >
         </nuxt-link>
-        <div>Также вы можете размещать свои беседки, как организация. <nuxt-link class="text-blue-link" to="/organization/create">Создать организацию</nuxt-link></div>
+        <div v-if="$auth.user.role === 'client'">
+          Также вы можете размещать свои беседки, как организация.
+          <nuxt-link class="text-blue-link" to="/organization/create"
+            >Создать организацию</nuxt-link
+          >
+        </div>
       </div>
     </div>
     <div v-if="$auth.user.role === 'client'" class="flex flex-col gap-10">
@@ -57,7 +62,7 @@
       <div class="font-rubik font-medium text-[36px] leading-none">
         Карты беседок
       </div>
-      <div v-if="maps" class="flex flex-col gap-5 items-center">
+      <div v-if="maps.length" class="flex flex-col gap-5 items-center">
         <div class="flex gap-[54px] flex-wrap">
           <pavilion-map v-for="(map, index) in maps" :key="index" :map="map" />
         </div>
@@ -101,23 +106,7 @@ export default Vue.extend({
   layout: 'cabinetLayout',
   data: () => ({
     billsHistory: false,
-    maps: [
-      {
-        id: 1,
-        name: 'Беседка',
-        address: 'г. Бавлы, Ленина, 16',
-      },
-      {
-        id: 2,
-        name: 'Домик',
-        address: 'тестовый адрес 116',
-      },
-      {
-        id: 3,
-        name: 'Бомик',
-        address: 'тестовый адрес 116',
-      },
-    ] as PavilionMapEntity[],
+    maps: [] as PavilionMapEntity[],
   }),
 })
 </script>

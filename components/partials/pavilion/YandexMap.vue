@@ -45,13 +45,20 @@ export default Vue.extend({
   data() {
     return {
       pavilionsCoords: [] as any,
-      coords: [55.84158954990046, 48.968362759580394],
+      coords: [],
       markerIcon: {
         layout: 'default#image',
         imageSize: [30, 30],
         imageOffset: [-10, -20],
         imageHref: require('~/assets/icons/i-home.svg'),
       },
+    }
+  },
+  created() {
+    if (process.client) {
+      const pavilionMapCoords = JSON.parse(localStorage.pavilionMapCoords)
+      console.log(pavilionMapCoords)
+      this.coords = pavilionMapCoords.coords
     }
   },
   methods: {
