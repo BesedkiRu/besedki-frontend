@@ -48,6 +48,16 @@ export default Vue.extend({
     IEmptyBills,
   },
   layout: 'cabinetLayout',
+
+  async asyncData({ $axios, $toast }) {
+    try {
+      const response = await $axios.get('/api/pavilion_map/owner')
+      const maps = response.data.result
+      return { maps }
+    } catch (e: any) {
+      $toast.error('Произошла ошибка')
+    }
+  },
   data: () => ({
     maps: [] as PavilionMapEntity[],
   }),

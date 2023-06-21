@@ -124,7 +124,7 @@ export default Vue.extend({
         this.htmlForm.reset()
         this.$toast.success('Карта успешно создана')
         this.$router.push('/pavilion/map/setting')
-        localStorage.pavilionMapCoords = JSON.stringify({
+        localStorage.pavilionMap = JSON.stringify({
           coords: [
             parseFloat(this.selectedSuggestion.data.geo_lat),
             parseFloat(this.selectedSuggestion.data.geo_lon),

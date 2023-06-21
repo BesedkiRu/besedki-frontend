@@ -148,7 +148,7 @@ export default Vue.extend({
       extraServices: [],
       images: [],
       price: '',
-      pavilionMap: 1,
+      pavilionMap: 11,
     },
     selectedSuggestion: null as null | DadataSuggestion,
     PavilionType,

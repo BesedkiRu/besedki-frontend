@@ -56,9 +56,8 @@ export default Vue.extend({
   },
   created() {
     if (process.client) {
-      const pavilionMapCoords = JSON.parse(localStorage.pavilionMapCoords)
-      console.log(pavilionMapCoords)
-      this.coords = pavilionMapCoords.coords
+      const pavilionMap = JSON.parse(localStorage.pavilionMap)
+      this.coords = pavilionMap.coords
     }
   },
   methods: {
