@@ -129,7 +129,7 @@ export default Vue.extend({
     },
   },
   created() {
-    this.data = JSON.parse(JSON.stringify(this.$auth.user.organization))
+    this.data = JSON.parse(JSON.stringify(this.$auth.user?.organization))
   },
   methods: {
     async onSubmit() {

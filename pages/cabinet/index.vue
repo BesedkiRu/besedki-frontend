@@ -26,6 +26,7 @@
             >Редактировать профиль</base-button
           >
         </nuxt-link>
+        <div>Также вы можете размещать свои беседки, как организация. <nuxt-link class="text-blue-link" to="/organization/create">Создать организацию</nuxt-link></div>
       </div>
     </div>
     <div v-if="$auth.user.role === 'client'" class="flex flex-col gap-10">

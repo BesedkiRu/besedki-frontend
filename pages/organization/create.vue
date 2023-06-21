@@ -4,11 +4,12 @@
       <validation-observer ref="form">
         <form ref="htmlForm" novalidate @submit.prevent="onSubmit">
           <fieldset :disabled="formDisabled">
-            <nuxt-link
-              to="/"
+            <button
+              type="button"
               class="flex items-center text-lg text-blue-link mb-2"
+              @click="onBack"
               ><i-arrow :size="24"></i-arrow>
-              <div>Вернуться назад</div></nuxt-link
+              <div>Вернуться назад</div></button
             >
             <div class="flex flex-col gap-10">
               <div>
@@ -108,6 +109,9 @@ export default Vue.extend({
     },
   },
   methods: {
+    async onBack(){
+      await this.$router.back();
+    },
     async onSubmit() {
       const isValid = await this.form.validate()
       if (!isValid) {
