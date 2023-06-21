@@ -78,12 +78,13 @@
                   <base-button type="submit" size="large" class="max-w-[121px]"
                     >Сохранить</base-button
                   >
-                  <base-button
+                  <button
                     type="button"
-                    size="large"
+                    class="bg-[#DC3545] hover:bg-[#ED0A3F] duration-300 py-2 px-8 text-white rounded-xl"
                     @click="deleteOrganization"
-                    >Удалить организацию</base-button
                   >
+                    Удалить организацию
+                  </button>
                 </div>
               </div>
             </fieldset>
