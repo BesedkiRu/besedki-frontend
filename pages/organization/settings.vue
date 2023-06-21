@@ -6,7 +6,7 @@
         <div class="flex flex-col gap-5 items-center">
           <div class="w-[150px] h-[150px] bg-gray rounded-full"></div>
           <div class="font-medium text-4xl text-center">
-            {{ $auth.user.name }} {{ $auth.user.surname }}
+            {{ $auth.user.organization.name }}
           </div>
         </div>
         <base-button size="large" class="flex gap-1 items-center">
@@ -69,50 +69,6 @@
             </fieldset>
           </form>
         </validation-observer>
-        <validation-observer ref="changePasswordForm">
-          <form
-            ref="passwordHtmlForm"
-            novalidate
-            @submit.prevent="onPasswordSubmit"
-          >
-            <fieldset :disabled="formDisabled">
-              <div class="flex flex-col gap-2.5">
-                <div
-                  class="font-medium text-2xl leading-none border-b border-border-gray pb-5"
-                >
-                  Сменить пароль
-                </div>
-                <div class="flex gap-7 w-full">
-                  <validation-provider v-slot="{ errors }" rules="required">
-                    <base-input
-                      v-model="oldPassword"
-                      label="Старый пароль"
-                      :error-messages="errors"
-                      placeholder="********"
-                      class="w-[309px]"
-                      type="password"
-                      name="oldPassword"
-                    ></base-input>
-                  </validation-provider>
-                  <validation-provider v-slot="{ errors }" rules="required">
-                    <base-input
-                      v-model="newPassword"
-                      label="Новый пароль"
-                      placeholder="********"
-                      :error-messages="errors"
-                      type="password"
-                      class="w-[309px]"
-                      name="newPassword"
-                    ></base-input>
-                  </validation-provider>
-                </div>
-                <base-button type="submit" size="large" class="max-w-[175px]"
-                  >Изменить пароль</base-button
-                >
-              </div>
-            </fieldset>
-          </form>
-        </validation-observer>
       </div>
     </div>
   </div>
@@ -126,7 +82,7 @@ import IPlus from '~/components/icons/IPlus.vue'
 import { ValidateForm } from '~/config/types'
 
 export default Vue.extend({
-  name: 'ProfileSettings',
+  name: 'OrganizationSettings',
   components: { BaseButton, IPlus, BaseInput },
   layout: 'cabinetLayout',
   data: () => ({
@@ -136,8 +92,6 @@ export default Vue.extend({
       surname: '',
       email: '',
     },
-    oldPassword: '',
-    newPassword: '',
   }),
   computed: {
     form(): ValidateForm {

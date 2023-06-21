@@ -16,7 +16,7 @@
             {{ $auth.user.organization.email }}
           </div>
         </div>
-        <nuxt-link to="/cabinet/settings">
+        <nuxt-link to="/organization/settings">
           <base-button size="large" button-style="primary"
             >Редактировать организацию</base-button
           >
