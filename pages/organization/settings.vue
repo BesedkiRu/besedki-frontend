@@ -74,9 +74,17 @@
                     />
                   </validation-provider>
                 </div>
-                <base-button type="submit" size="large" class="max-w-[121px]"
-                  >Сохранить</base-button
-                >
+                <div class="flex gap-10 items-center">
+                  <base-button type="submit" size="large" class="max-w-[121px]"
+                    >Сохранить</base-button
+                  >
+                  <base-button
+                    type="button"
+                    size="large"
+                    @click="deleteOrganization"
+                    >Удалить организацию</base-button
+                  >
+                </div>
               </div>
             </fieldset>
           </form>
@@ -146,6 +154,22 @@ export default Vue.extend({
         this.$toast.error('Произошла ошибка. Попробуйте позже')
       } finally {
         this.formDisabled = false
+      }
+    },
+    async deleteOrganization() {
+      try {
+        if (this.$auth.user) {
+          await this.$axios.delete('/api/organization', {
+            data: this.$auth.user.organization,
+          })
+          this.$auth.user.role = 'client'
+          this.$auth.fetchUser()
+
+          this.$toast.success('Организация успешно удалена')
+          this.$router.push('/cabinet')
+        }
+      } catch (e: any) {
+        this.$toast.error('Произошла ошибка. Попробуйте позже')
       }
     },
   },
