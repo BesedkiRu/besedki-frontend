@@ -61,6 +61,7 @@
                     class="w-[164px]"
                     size="large"
                     button-style="secondary"
+                    @click="onGoogleAuth"
                   >
                     <i-google :size="24" />
                     <span>Google</span>
@@ -91,13 +92,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapActions } from 'vuex'
 import BaseButton from '~/components/base/BaseButton.vue'
 import IGoogle from '~/components/icons/IGoogle.vue'
 import IVk from '~/components/icons/IVk.vue'
 import BaseInput from '~/components/base/BaseInput.vue'
 import { ValidateForm } from '~/config/types'
 import IArrow from '~/components/icons/IArrow.vue'
-
 export default Vue.extend({
   name: 'SignupPage',
   components: { BaseInput, IVk, IGoogle, BaseButton, IArrow },
@@ -116,6 +117,7 @@ export default Vue.extend({
     },
   },
   methods: {
+    ...mapActions('OAuth', ['generateGoogleLink']),
     async onSubmit() {
       const isValid = await this.form.validate()
       if (!isValid) {
@@ -130,6 +132,10 @@ export default Vue.extend({
       } finally {
         this.formDisabled = false
       }
+    },
+    async onGoogleAuth() {
+      const link = await this.generateGoogleLink()
+      location.assign(link)
     },
   },
 })

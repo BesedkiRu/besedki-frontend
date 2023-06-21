@@ -79,6 +79,7 @@
                     class="w-[164px]"
                     size="large"
                     button-style="secondary"
+                    @click="onGoogleAuth"
                   >
                     <i-google :size="24" />
                     <span>Google</span>
@@ -109,6 +110,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapActions } from 'vuex'
 import BaseButton from '~/components/base/BaseButton.vue'
 import IVk from '~/components/icons/IVk.vue'
 import IGoogle from '~/components/icons/IGoogle.vue'
@@ -137,6 +139,7 @@ export default Vue.extend({
     },
   },
   methods: {
+    ...mapActions('OAuth', ['generateGoogleLink']),
     async onSubmit() {
       const isValid = await this.form.validate()
       if (!isValid) {
@@ -153,6 +156,10 @@ export default Vue.extend({
       } catch (e) {
         this.$toast.error('Произошла ошибка. Попробуйте позже')
       }
+    },
+    async onGoogleAuth() {
+      const link = await this.generateGoogleLink()
+      location.assign(link)
     },
   },
 })
