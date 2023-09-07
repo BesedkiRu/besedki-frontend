@@ -10,7 +10,7 @@
       </base-button>
     </div>
     <div class="flex flex-col gap-5 items-center">
-      <div class="flex justify-center gap-[54px] flex-wrap">
+      <div class="flex gap-[54px] flex-wrap">
         <pavilion-map v-for="(map, index) in maps" :key="index" :map="map" />
       </div>
     </div>
@@ -36,17 +36,17 @@ export default Vue.extend({
     maps: [
       {
         id: 1,
-        name: 'Сосалка',
+        name: 'Беседка',
         address: 'г. Бавлы, Ленина, 16',
       },
       {
         id: 2,
-        name: 'Ущерб',
+        name: 'Домик',
         address: 'тестовый адрес 116',
       },
       {
         id: 3,
-        name: 'Бывает',
+        name: 'Бомик',
         address: 'тестовый адрес 116',
       },
     ] as PavilionMapEntity[],

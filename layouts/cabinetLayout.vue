@@ -14,6 +14,12 @@
               <div>Профиль</div>
             </sidebar-button>
           </nuxt-link>
+          <nuxt-link to="/cabinet/organization">
+            <sidebar-button>
+              <i-organization size="24" />
+              <div>Организация</div>
+            </sidebar-button>
+          </nuxt-link>
           <nuxt-link to="/cabinet/pavilion-maps">
             <sidebar-button>
               <i-map :size="24" />
@@ -35,13 +41,20 @@
         </div>
       </div>
       <div class="flex flex-col gap-2.5">
-        <div class="flex gap-2.5 items-center py-[13px] pl-4 pr-[27px]">
-          <div class="bg-gray w-9 h-9 rounded-full"></div>
+        <nuxt-link
+          class="flex gap-2.5 items-center py-[13px] pl-4 pr-[27px]"
+          to="/cabinet"
+        >
+          <div class="bg-gray w-9 h-9 rounded-full flex flex-shrink-0"></div>
           <div>
-            <div class="text-base leading-none w-full">Рустем Галимов</div>
-            <div class="text-gray text-sm leading-none">galim691@mail.ru</div>
+            <div class="text-base leading-none w-full">
+              {{ $auth.user.name }} {{ $auth.user.surname }}
+            </div>
+            <div class="text-gray text-sm leading-none overflow-hidden">
+              {{ $auth.user.email }}
+            </div>
           </div>
-        </div>
+        </nuxt-link>
         <sidebar-button @click.native="logout">
           <i-exit :size="24" />
           <div>Выйти</div>
@@ -67,6 +80,7 @@ import IHistory from '~/components/icons/IHistory.vue'
 import ISettings from '~/components/icons/ISettings.vue'
 import IExit from '~/components/icons/IExit.vue'
 import SidebarButton from '~/components/partials/cabinet/SidebarButton.vue'
+import IOrganization from '~/components/icons/IOrganization.vue'
 
 export default Vue.extend({
   name: 'CabinetLayout',
@@ -78,6 +92,7 @@ export default Vue.extend({
     ISettings,
     IExit,
     SidebarButton,
+    IOrganization,
   },
   methods: {
     logout() {
